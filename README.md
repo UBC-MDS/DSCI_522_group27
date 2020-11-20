@@ -4,6 +4,7 @@
 
 This is a group project for DSCI 522 in the MDS program at UBC.
 
+
 # Introduction 
 
 We will work with the wine quality data set created by Dr. P. Cortez, 
@@ -21,6 +22,7 @@ density and so on in both the white wine data and the red wine data. Each row ha
 and we have 4898 observations in total with no missing values in the white wine data. 
 Please note that these quality scores in this white wine data are based on sensory data.
 
+
 The plan for analyzing the white wine data uses a scikit-learn regression model to predict the wine quality based on physicochemical tests.
 We will use different regression models 
 such as the linear regression model (`Ridge` or `LinearRegression`), random forest trees to get a correct and accurate prediction. 
@@ -37,7 +39,9 @@ which downloads and writes the file.
 
 # Usages
 
+
 # Dependencies
+
 
 # License 
 The materials on predicting white wine quality are licensed under the MIT License 
