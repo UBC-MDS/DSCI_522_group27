@@ -4,11 +4,11 @@
 
 This is a group project for DSCI 522 in the MDS program at UBC.
 
-# Proposal 
+# Introduction 
 
 We will work with the wine quality data set created by Dr. P. Cortez, 
-A. Cerdeira, F. Almeida, T. Matos and J. Reis. It was sourced from the UCI Machine Learning Repository, 
-and you can find it [here](https://archive.ics.uci.edu/ml/datasets/wine+quality). 
+Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis. It was sourced from the UCI Machine Learning 
+Repository (Cortez et al., 2009), and you can find it [here](https://archive.ics.uci.edu/ml/datasets/wine+quality). 
 This data set has two primary data: white wine data and red wine data. 
 We will work on the white wine data since this data has many more observations by comparing the red wine data observations. 
 However, we may use red wine data by comparing white wine data. 
@@ -32,8 +32,12 @@ Then we can visualize correlation plots and calculating correlations to form a c
 We can get a summary report by using Pandas profiling to do exploratory data analysis on data. 
 
 We can create an eda folder at the root of our group repository 
-and add our tables and figures into this eda folder.
+and add our tables and figures into this eda folder. We also created a folder named src to store the a `.ipynb` script 
+which downloads and writes the file.
 
+# Usages
+
+# Dependencies
 
 # License 
 The materials on predicting white wine quality are licensed under the MIT License 
