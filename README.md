@@ -6,7 +6,7 @@ This is a group project for DSCI 522 in the MDS program at UBC.
 
 # Proposal 
 
-For this project, we are interested in studying the relationship between the chemical contents of different wines and their subjective qualities as scored by wine reviewers.
+For this project, we are interested in predicting subjective wine quality scores, as scored by wine reviewers, based on a set of physicochemical features of the wine.
 
 We will work with the wine quality data set created by Dr. P. Cortez, 
 A. Cerdeira, F. Almeida, T. Matos and J. Reis. It was sourced from the UCI Machine Learning Repository, 
@@ -15,12 +15,8 @@ This dataset has two primary groups: white wine data and red wine data.
 We have chosen to analyse the white wine data since this data has many more observations than the red wine data observations. 
 However, we may also add the red wine data into our analysis if time allows. 
 
-We aim to predict the quality of diffrent wines based on their physicochemical features which are included in the dataset,
-a regression problem in Machine learning, by treating quality as our target (quality is numeric with scores from 0 to 10).
-There are 11 numeric features in the dataset, which includes physicochemical test results such as citric acid content, free sulfur dioxide content, 
-density, etc. for both the white wine and the red wine data. Each row contains one observation of these physicochemical test results and the resulting quality,
-and we have 4898 observations in total with no missing values in the white wine data. 
-Please note that these quality scores in this white wine data are based on sensory data and are score subjectively by reviewers.
+We aim to predict the quality of different wines based on their physicochemical features which are included in the dataset. We will be treaing this as a regression problem in Machine learning, by using quality as our target (quality is numeric with scores from 3 to 9, assumed to be given on a 1-10 rating scale).
+There are 11 numeric features in the dataset, which includes physicochemical test results such as citric acid content, free sulfur dioxide content, density, etc. for both the white wine and the red wine data. Each row contains one observation of these physicochemical test results and the resulting quality, and we have 4898 observations in total with no missing values in the white wine data. Note that the quality scores in this white wine data are based on sensory data and are score subjectively by reviewers.
 
 The plan for analyzing the white wine data involves using a scikit-learn regression model to predict the wine quality based on the physicochemical test features.
 We will test different regression models 
@@ -34,7 +30,6 @@ We can get a summary report by using Pandas profiling to do exploratory data ana
 
 We can create an eda folder at the root of our group repository 
 and add our tables and figures into this eda folder.
-
 
 # License 
 The materials on predicting white wine quality are licensed under the MIT License 
