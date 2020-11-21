@@ -24,9 +24,8 @@ such as the linear regression model (`Ridge` or `LinearRegression`) and the rand
 
 One of the first steps of this project will be to perform and exploratory data analysis on the white wine dataset. Looking through the white wine data, we have a set of physicochemical tests such as pH,
 free sulfur dioxide, etc. and we want to know if our features are correlated or not. 
-If our features are related, we need to use `Ridge` instead of `LinearRegression` to avoid a bad predicting issue. 
-Then we can visualize correlation plots and calculating correlations to form a correlation table to do exploratory data analysis. 
-We can get a summary report by using Pandas profiling to do exploratory data analysis on data. 
+If our features are related, we need to use `Ridge` instead of `LinearRegression` to avoid low prediction scores. 
+We then visualized correlation plots to observe which features were strongly correlated to each other, and also plotted histograms to uncover how features were correlated to the quality targets. A pandas profiling report was also produced to check feature distributions, check for missing values, and other general eda for our data.
 
 The completed EDA analysis can be found in the eda folder at the root of our group's repository.
 
