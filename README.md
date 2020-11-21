@@ -9,7 +9,7 @@ This is a group project for DSCI 522 in the MDS program at UBC.
 For this project, we are interested in predicting subjective wine quality scores, as scored by wine reviewers, based on a set of physicochemical features of the wine.
 
 We will work with the wine quality data set created by Dr. P. Cortez, 
-A. Cerdeira, F. Almeida, T. Matos and J. Reis. It was sourced from the UCI Machine Learning Repository, 
+Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis. It was sourced from the UCI Machine Learning Repository (Cortez et al., 2009), 
 and you can find it [here](https://archive.ics.uci.edu/ml/datasets/wine+quality). 
 This dataset has two primary groups: white wine data and red wine data. 
 We have chosen to analyse the white wine data since this data has many more observations than the red wine data observations. 
@@ -31,6 +31,22 @@ We can get a summary report by using Pandas profiling to do exploratory data ana
 We can create an eda folder at the root of our group repository 
 and add our tables and figures into this eda folder.
 
+## Usage
+
+To replicate the analysis, clone this GitHub repository, install the
+dependencies listed below, and run all the cells in the eda/wine_quality_eda.ipynb
+
+## Dependencies
+
+  - Python 3.7 and Python packages:
+      - docopt==0.6.2
+      - pandas==0.24.2
+      - pandas-profiling==2.9.0
+      - matplotlib==3.3.3
+      - altair==4.1.0
+      - numpy==1.19.4
+      - sklearn==0.23.2
+ 
 # License 
 The materials on predicting white wine quality are licensed under the MIT License 
 (Copyright (c) 2020 Master of Data Science at the University of British Columbia)
