@@ -4,45 +4,48 @@
 
 This is a group project for DSCI 522 in the MDS program at UBC.
 
+# Proposal 
 
-# Introduction 
+For this project, we are interested in predicting subjective wine quality scores, as scored by wine reviewers, based on a set of physicochemical features of the wine.
 
 We will work with the wine quality data set created by Dr. P. Cortez, 
-Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis. It was sourced from the UCI Machine Learning 
-Repository (Cortez et al., 2009), and you can find it [here](https://archive.ics.uci.edu/ml/datasets/wine+quality). 
-This data set has two primary data: white wine data and red wine data. 
-We will work on the white wine data since this data has many more observations by comparing the red wine data observations. 
-However, we may use red wine data by comparing white wine data. 
+Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis. It was sourced from the UCI Machine Learning Repository (Cortez et al., 2009), 
+and you can find it [here](https://archive.ics.uci.edu/ml/datasets/wine+quality). 
+This dataset has two primary groups: white wine data and red wine data. 
+We have chosen to analyse the white wine data since this data has many more observations than the red wine data observations. 
+However, we may also add the red wine data into our analysis if time allows. 
 
-In this data set, we are interested in predicting the wine quality based on physicochemical tests. 
-We will focus on predicting the white wine quality based on physicochemical tests,
-a regression problem in Machine learning, by treating quality as our target since the quality is numeric with scores from 0 to 10.
-There are 11 features (numeric variables): a set of physicochemical test results such as citric acid, free sulfur dioxide, 
-density and so on in both the white wine data and the red wine data. Each row has this set of physicochemical test results, 
-and we have 4898 observations in total with no missing values in the white wine data. 
-Please note that these quality scores in this white wine data are based on sensory data.
+We aim to predict the quality of different wines based on their physicochemical features which are included in the dataset. We will be treaing this as a regression problem in Machine learning, by using quality as our target (quality is numeric with scores from 3 to 9, assumed to be given on a 1-10 rating scale).
+There are 11 numeric features in the dataset, which includes physicochemical test results such as citric acid content, free sulfur dioxide content, density, etc. for both the white wine and the red wine data. Each row contains one observation of these physicochemical test results and the resulting quality, and we have 4898 observations in total with no missing values in the white wine data. Note that the quality scores in this white wine data are based on sensory data and are score subjectively by reviewers.
 
+The plan for analyzing the white wine data involves using a scikit-learn regression model to predict the wine quality based on the physicochemical test features.
+We will test different regression models 
+such as the linear regression model (`Ridge` or `LinearRegression`) and the random forest trees model to try and train an accurate prediction model for white wine quality. 
 
-The plan for analyzing the white wine data uses a scikit-learn regression model to predict the wine quality based on physicochemical tests.
-We will use different regression models 
-such as the linear regression model (`Ridge` or `LinearRegression`), random forest trees to get a correct and accurate prediction. 
-
-Looking through the white wine data, we have a set of physicochemical tests such as pH,
-free sulfur dioxide, etc. We want to know if our features are correlated or not. 
+One of the first steps of this project will be to perform and exploratory data analysis on the white wine dataset. Looking through the white wine data, we have a set of physicochemical tests such as pH,
+free sulfur dioxide, etc. and we want to know if our features are correlated or not. 
 If our features are related, we need to use `Ridge` instead of `LinearRegression` to avoid a bad predicting issue. 
 Then we can visualize correlation plots and calculating correlations to form a correlation table to do exploratory data analysis. 
 We can get a summary report by using Pandas profiling to do exploratory data analysis on data. 
 
-We can create an eda folder at the root of our group repository 
-and add our tables and figures into this eda folder. We also created a folder named src to store the a `.ipynb` script 
-which downloads and writes the file.
+The completed EDA analysis can be found in the eda folder at the root of our group's repository.
 
-# Usages
+## Usage
 
+To replicate the analysis, clone this GitHub repository, install the
+dependencies listed below, and run all the cells in the eda/wine_quality_eda.ipynb
 
-# Dependencies
+## Dependencies
 
-
+  - Python 3.7 and Python packages:
+      - docopt==0.6.2
+      - pandas==0.24.2
+      - pandas-profiling==2.9.0
+      - matplotlib==3.3.3
+      - altair==4.1.0
+      - numpy==1.19.4
+      - sklearn==0.23.2
+ 
 # License 
 The materials on predicting white wine quality are licensed under the MIT License 
 (Copyright (c) 2020 Master of Data Science at the University of British Columbia)
