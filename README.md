@@ -28,8 +28,7 @@ If our features are related, we need to use `Ridge` instead of `LinearRegression
 Then we can visualize correlation plots and calculating correlations to form a correlation table to do exploratory data analysis. 
 We can get a summary report by using Pandas profiling to do exploratory data analysis on data. 
 
-We can create an eda folder at the root of our group repository 
-and add our tables and figures into this eda folder.
+The completed EDA analysis can be found in the eda folder at the root of our group's repository.
 
 ## Usage
 
