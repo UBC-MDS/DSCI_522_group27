@@ -31,8 +31,10 @@ The completed EDA analysis can be found in the eda folder at the root of our gro
 
 ## Usage
 
-To replicate the analysis, clone this GitHub repository, install the
-dependencies listed below, and run all the cells in the eda/wine_quality_eda.ipynb
+To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands from the main directory of the project:
+- python src/download_data.py data raw_data.csv
+- python src/preprocess.py data raw_data.csv
+- python src/eda_figures.py data raw_data.csv results
 
 ## Dependencies
 
