@@ -1,27 +1,36 @@
+""""
+Script for preprocessing and train-test splitting the white wine dataset.
+
+Usage:
+    preprocess.py <data_folder> <raw_data_file>
+
+Options:
+"""
+from docopt import docopt
 from sklearn.model_selection import train_test_split, cross_val_score, cross_validate
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 from sklearn.compose import ColumnTransformer
 import pandas as pd
+import os
 
-def preprocess_data(raw_data_file):
+def preprocess_data(data_folder, raw_data_file):
     """Function for preprocessing the white wine quality dataset
 
     Parameters:
-    raw_data_path (str): raw data file
+    data_folder   (str): data directory
+    raw_data_file (str): raw data file
 
     Returns:
-    X_train (pandas.core.frame.DataFrame): training data
-    X_test (pandas.core.frame.DataFrame): training data
-    y_train (pandas.core.series.Series): training data
-    y_test (pandas.core.series.Series): training data
+    train_df (pandas.core.frame.DataFrame): training data
+    test_df  (pandas.core.frame.DataFrame): training data
     
     Example:
-    X_train, X_test, y_train, y_test = download_data('data/raw_data.csv')
+    train_df, test_df = preprocess_data('data', 'raw_data.csv')
 
    """
     
-    raw_data = pd.read_csv(raw_data_file)
+    raw_data = pd.read_csv(os.path.join (data_folder, raw_data_file), index_col=0)
     
     numeric_features = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides',
                     'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol']
@@ -31,20 +40,22 @@ def preprocess_data(raw_data_file):
     preprocessor = ColumnTransformer(
         transformers=[
             ("num", numeric_transformer, numeric_features),
-        ]
+        ], remainder="passthrough"
     )
     
     # Keep 25% of data for testing and split data into X and y:
     train_df, test_df = train_test_split(raw_data, test_size=0.25, random_state=123)
 
-    X_train = train_df.drop(columns=['quality'])
-    y_train = train_df['quality']
-    X_test = test_df.drop(columns=['quality'])
-    y_test = test_df['quality']
-    
     # Apply the preprocessor to the data
     columns = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 
-               'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol']
-    X_train = pd.DataFrame(preprocessor.fit_transform(X_train), columns=columns)
-    X_test = pd.DataFrame(preprocessor.transform(X_test), columns=columns)
-    return X_train, X_test, y_train, y_test
+               'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality']
+    train_df = pd.DataFrame(preprocessor.fit_transform(train_df), columns=columns)
+    test_df = pd.DataFrame(preprocessor.transform(test_df), columns=columns)
+    return train_df, test_df
+
+if __name__ == "__main__":
+    args = docopt(__doc__)
+    train_df, test_df = preprocess_data(args['<data_folder>'], args['<raw_data_file>'])
+    
+    train_df.to_feather(os.path.join(args['<data_folder>'], 'train_df.feather'))
+    test_df.to_feather(os.path.join(args['<data_folder>'], 'test_df.feather'))

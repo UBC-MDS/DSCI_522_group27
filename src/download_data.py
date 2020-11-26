@@ -27,7 +27,8 @@ def download_data(data_folder, filename):
     data = pd.read_csv(url, sep=';')
     if not os.path.isdir(data_folder):
         os.mkdir(data_folder) 
-        data.to_csv(os.path.join(data_folder, filename))
+    data.to_csv(os.path.join(data_folder, filename))
+    
         
 if __name__ == "__main__":
     args = docopt(__doc__)

@@ -1,10 +1,17 @@
-from src.download_data import download_data
-from src.preprocess import preprocess_data
+""""
+Script for preparing and saving the figures used for the eda analysis of the white wine dataset.
+
+Usage:
+    eda_figures.py <data_folder> <raw_data_file> <results_folder>
+
+Options:
+"""
+from docopt import docopt
 import pandas as pd
 import altair as alt
 import os
 
-def make_eda_figures(data_folder, results_folder):
+def make_eda_figures(data_folder, raw_data_file, results_folder):
     """Function for preparing and saving the figures used for the eda analysis of the white wine dataset
 
     Parameters:
@@ -17,12 +24,17 @@ def make_eda_figures(data_folder, results_folder):
     make_eda_figures('data', 'results')
 
    """
-    # Call download data script
-    download_data(data_folder, 'raw_data.csv')
-    white_wine_df = pd.read_csv(os.path.join(data_folder, 'raw_data.csv'), index_col=0)
+    # Read raw data from download_data.py script
+    white_wine_df = pd.read_csv(os.path.join(os.path.join(data_folder, raw_data_file)), index_col=0)
     
-    # Call preprocess script
-    X_train, X_test, y_train, y_test = preprocess_data('data/raw_data.csv')
+    # Read preprocessed data from preprocess.py script
+    train_df = pd.read_feather(os.path.join(data_folder, 'train_df.feather'))
+    test_df = pd.read_feather(os.path.join(data_folder, 'test_df.feather'))
+    
+    X_train = train_df.drop(columns=['quality'])
+    y_train = train_df['quality']
+    X_test = test_df.drop(columns=['quality'])
+    y_test = test_df['quality']
     
     # Make first figure (the distributions for quality)
     y_train_chart = alt.Chart(pd.DataFrame(y_train), title='Train data').mark_bar(size=55).encode(
@@ -70,7 +82,9 @@ def make_eda_figures(data_folder, results_folder):
     # Save figures in html (png was giving me errors for saving?)
     if not os.path.isdir(results_folder):
         os.mkdir(results_folder) 
-        quality_distributions.save(os.path.join(results_folder, 'quality_distributions_figure.html'))
-        cor_plot_text.save(os.path.join(results_folder, 'corr_figure.html'))
+    quality_distributions.save(os.path.join(results_folder, 'quality_distributions_figure.html'))
+    cor_plot_text.save(os.path.join(results_folder, 'corr_figure.html'))
     
-
+if __name__ == "__main__":
+    args = docopt(__doc__)
+    make_eda_figures(args['<data_folder>'], args['<raw_data_file>'], args['<results_folder>'])
