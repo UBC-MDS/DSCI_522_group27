@@ -17,8 +17,66 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## **Data**
 
+The dataset that we used came from the University of
+California Irvine (UCI) machine learning repository and was collected by Paulo
+Cortez, University of Minho, Guimarães, Portugal and A. Cerdeira, F. Almeida,
+T. Matos with help from J. Reis, Viticulture Commission of the Vinho Verde
+Region(CVRVV), Porto, Portugal in 2009. The dataset contains the results of
+various physiochemical tests on white "Vinho Verde" wine samples from Northern
+Portugal and can be found [here]( <https://archive.ics.uci.edu/ml/datasets/wine+quality>)
+specifically with the [white wine dataset]( [https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv).](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv).)
+No additional features or specific branding of each wine is available in the
+dataset for privacy purposes. Each row in the dataset represents a single wine
+which was tested and scored based on sensory data.
+
 ## **Analysis**
 
+A classification model was built using the random forest??? algorithm
+was and allowed us to predict a sensory score based on the physiochemical testing
+information recorded for each wine. Because of the privacy constraints of the
+data our dataset is somewhat limited since useful potentially factors that
+might influence the scoring such as grape types, brand names, or price are not available
+to us. Assumptions we made regarding this dataset are that the quality scores came
+from the opinions of wine critics and that testing for all wines was consistent.
+The model was fit using all??? of the variables from the dataset. Hyperparameters
+n\_estimators and max\_depth were optimized via random search while all other hyperparameters
+used the default sklearn RandomForestRegressor() values. Some potential limitations
+of this model are that \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_. If provided with more time we would be
+able to improve our analysis by \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
+
 # **Results & Discussion**
+
+To determine how useful strong of an influence each feature
+has on the quality score we created a correlation plot using the altair package
+which shows how each of the different features is correlated with each other.
+This chart showed us that different features had varying degrees of influence on
+the quality score, with increased alcohol content and decreased density most heavily
+influencing the quality score. \_\_\_\_\_\_\_\_\_\_\_\_CONSIDER REMOVING FEATURES WITH
+LITTLE INFLUENCE SUCH AS FREE SULFUR DIOXIDE AND CITRIC ACID
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
+
+ 
+
+[picture of our correlation plot]
+
+ 
+
+Figure 1. Altair correlation plot of the correlation of each
+of the different features in the white wine dataset.
+
+ 
+
+We found that a random forest classifier with hyperparaters n\_estimators
+and max\_depth set to values of 300 and 10 respectively worked best with our
+dataset. This resulted in use producing a model with a training score of 0.929264
+and a testing score of 0.499623.
+
+ 
+
+[INSERT PLOT WHICH SHOWS QUALITY OF OUR MODEL].
+
+ 
+
+Figure 2. \_\_\_\_\_\_\_\_\_
 
 # **References**
