@@ -1,30 +1,21 @@
-""""
-Usage:
-    download_data.py <data_folder> <filename>
-
-Options:
-
-"""
-from docopt import docopt
 import pandas as pd
 import os
 
-if __name__ == "__main__":
-    
-    args = docopt(__doc__)
-    
-    import pandas as pd
-    import os
-    data = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv', sep=';')
-    cwd = os.getcwd()
-    data_folder = os.path.join(cwd, args['<data_folder>'])
-    data.to_csv(os.path.join(data_folder, args['<filename>']))
+def download_data(data_folder, filename):
+    """Function for downloading the raw white wine quality data and saving as a .csv file
 
-# To use this script with jupyter notebooks to download data into /data folder call: !python download_data.py data raw.csv
+    Parameters:
+    data_folder (str): data directory
+    filename (str): name data file should be saved as
 
-def download_data(database_name,filename):
-    url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/'
-    url = os.path.join(url,database_name)
-    url = os.path.join(url,filename)
+    Returns:
+    
+    Example:
+    download_data('data','raw_data.csv')
+
+   """
+    url = 'http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv'
     data = pd.read_csv(url, sep=';')
-    return data
+    if not os.path.isdir(data_folder):
+        os.mkdir(data_folder) 
+        data.to_csv(os.path.join(data_folder, filename))
