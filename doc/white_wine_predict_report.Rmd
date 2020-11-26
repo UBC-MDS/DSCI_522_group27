@@ -1,6 +1,10 @@
 ---
 title: "white_wine_predict_report"
-output: html_document
+author: "DSCI 522 group 27"
+output: 
+  html_document:
+    toc: true
+bibliography: reference.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -11,7 +15,29 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # **Summary**
 
+Here we tried different models such as `DummyRegressor`, `Ridge` and `RandomForestRegressor` 
+to predict the white wine quality. When we carried out the cross-validation for these three models, 
+we chose `RandomForestRegressor` as our best performance model by comparing different metrics. 
+We tried hyperparameter optimization with `RandomForestRegressor` to get the final test score around 0.4311,
+which seems to be not reasonable here. Therefore, `RandomForestregressor` may not be an appropriate model to use here.
+However, we can find other models to improve our test scores, or we can carry out a different metric or 
+tune other hyperparameters to get a better result.   
+
+
 # **Introduction**
+
+The wine market occupies a significant position among consumers. For manufacturers, 
+the quality of alcohol significantly affects the sales of alcoholic beverages, 
+but the taster is not necessarily the only standard for judging the quality of alcoholic beverages.
+We can establish a model to estimate the quality of alcoholic drinks through chemical substances. 
+However, this may require a lot of professional knowledge. We found a good article which was written 
+by Dr. P. Cortez, Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis, 
+and they used a data mining approach to get promising results comparing neural network methods [@CORTEZ2009547].
+
+Here we want to try different regression models to predict the wine quality based on 
+the physicochemical test features. Answering this question is crucial since we want to 
+support the wine tasting evaluations of oenologists and contribute to wine production [@CORTEZ2009547].
+
 
 # **Methods**
 
@@ -80,3 +106,4 @@ and a testing score of 0.499623.
 Figure 2. \_\_\_\_\_\_\_\_\_
 
 # **References**
+
