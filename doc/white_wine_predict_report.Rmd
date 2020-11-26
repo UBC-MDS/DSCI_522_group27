@@ -1,0 +1,24 @@
+---
+title: "white_wine_predict_report"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Predicting quality of white wine from various characteristics
+
+# **Summary**
+
+# **Introduction**
+
+# **Methods**
+
+## **Data**
+
+## **Analysis**
+
+# **Results & Discussion**
+
+# **References**
