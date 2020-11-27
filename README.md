@@ -18,9 +18,16 @@ The final report can be found [here](https://htmlpreview.github.io/?https://gith
 
 To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands from the main directory of the project:
 ```
+# download data and save as csv
 - download_data.py data raw_data.csv
+
+# preprocess and split data
 - preprocess.py data raw_data.csv
+
+# create exploratory data analysis figures
 - eda_figures.py data raw_data.csv results
+
+# fit, tune and test model
 - model_fitting.py data results
 ```
 ## Dependencies
