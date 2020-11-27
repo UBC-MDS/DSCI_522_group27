@@ -12,7 +12,7 @@ The dataset that was used for this project is of physicochemical features of win
 
 ## Report
 
-The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_group27/blob/main/doc/white_wine_predict_report.md)
+The final report can be found [here](https://htmlpreview.github.io/?https://github.com/UBC-MDS/DSCI_522_group27/blob/main/doc/white_wine_predict_report.html)
 
 ## Usage
 
