@@ -8,9 +8,7 @@ output:
     keep_md: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 # Predicting quality of white wine from various characteristics
 
@@ -40,10 +38,10 @@ To determine how useful strong of an influence each feature has on the quality s
 
  
 
-```{r fig_1, echo=FALSE, fig.cap="Altair correlation plot of the correlation of each of the different features in the white wine dataset.", out.width = '60%'}
-knitr::include_graphics("../results/feature_correlation.png")
-# [picture of our correlation plot]
-```
+<div class="figure">
+<img src="../results/feature_correlation.png" alt="Altair correlation plot of the correlation of each of the different features in the white wine dataset." width="60%" />
+<p class="caption">Altair correlation plot of the correlation of each of the different features in the white wine dataset.</p>
+</div>
 
  
 
@@ -51,9 +49,10 @@ We found that a random forest classifier with hyperparaters `n_estimators` and `
 
  
 
-```{r fig_2, echo=FALSE, fig.cap="Figure 2. ______", out.width = '60%'}
-knitr::include_graphics("../results/feature_weight.png")
-```
+<div class="figure">
+<img src="../results/feature_weight.png" alt="Figure 2. ______" width="60%" />
+<p class="caption">Figure 2. ______</p>
+</div>
 
 STILL NEED TO FIND REFERENCES FOR...
 
