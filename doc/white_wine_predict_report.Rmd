@@ -49,7 +49,7 @@ knitr::include_graphics("../results/feature_weight.png")
 
 # Limitations & Future
 
-Some potential limitations of our model thus far are that we have only tested a handful of different regression methods and only performed light hyperparameter optimization thus far. There likely exists combinations which will lead to better scoring in our model. If provided with more time we would be able to improve our analysis by looking for these potentially better model/hyperparameter combinations. Another way to improve our model would be to implement a form of feature selection given that we are still including all features and that many of them seem to have little influence on the scoring of our model.
+Some potential limitations of our model thus far are that we have only tested a handful of different regression methods and only performed light hyperparameter optimization thus far. There likely exists combinations which will lead to better scoring in our model. If provided with more time we would be able to improve our analysis by looking for these potentially better model/hyperparameter combinations. SVM might be an effective model to test for this specific type of problem as mentioned in [@CORTEZ2009547]. Another way to improve our model would be to implement a form of feature selection (such as RFECV) given that we are still including all features and that many of them seem to have little influence on the scoring of our model.
 
 # References
 
