@@ -29,6 +29,9 @@ python eda_figures.py data raw_data.csv results
 
 # fit, tune and test model
 python model_fitting.py data results
+
+# render final report
+Rscript -e "rmarkdown::render('doc/white_wine_predict_report.Rmd', output_format = 'github_document')"
 ```
 ## Dependencies
 
