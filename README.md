@@ -1,13 +1,3 @@
----
-title: "Readme report"
-author: "DSCI 522 group 27"
-bibliography: doc/references_white_wine.bib
-output: 
-  html_document:
-    toc: true
-    keep_md: true
----
-
 # Predicting white wine quality
 
   - author: DSCI 522 group 27
