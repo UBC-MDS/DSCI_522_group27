@@ -30,6 +30,11 @@ def preprocess_data(data_folder, raw_data_file):
     train_df, test_df = preprocess_data('data', 'raw_data.csv')
 
    """
+    if not type(data_folder) == str:
+        raise ValueError("data_folder argument should be passed as str.")
+    if not type(raw_data_file) == str:
+        raise ValueError("raw_data_file argument should be passed as str.")
+
     # Read raw data from data folder:
     raw_data = pd.read_csv(os.path.join(data_folder, raw_data_file), index_col=0)
     numeric_features = [

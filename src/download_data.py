@@ -24,6 +24,11 @@ def download_data(data_folder, filename):
     download_data('data','raw_data.csv')
 
    """
+    if not type(data_folder) == str:
+        raise ValueError("data_folder argument should be passed as str.")
+    if not type(filename) == str:
+        raise ValueError("filename argument should be passed as str.")
+
     url = "http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"
     data = pd.read_csv(url, sep=";")
     if not os.path.isdir(data_folder):
