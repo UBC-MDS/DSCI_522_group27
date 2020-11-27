@@ -27,6 +27,8 @@ free sulfur dioxide, etc. and we want to know if our features are correlated or 
 If our features are related, we need to use `Ridge` instead of `LinearRegression` to avoid low prediction scores. 
 We then visualized correlation plots to observe which features were strongly correlated to each other, and also plotted histograms to uncover how features were correlated to the quality targets. A pandas profiling report was also produced to check feature distributions, check for missing values, and other general eda for our data.
 
+The distribution of our data remained unchanged after the split. The weight of our distribution, however, lies around 6. Thus, it seems there is data imbalance in our quality variable. If during initial training, we notice that this is affecting our results, we may need to look into methods to address the low number of observations at the ends of the quality rating scale.
+
 The completed EDA analysis can be found in the eda folder at the root of our group's repository.
 
 ## Usage
