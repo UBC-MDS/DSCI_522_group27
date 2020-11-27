@@ -17,10 +17,12 @@ The final report can be found [here](https://htmlpreview.github.io/?https://gith
 ## Usage
 
 To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands from the main directory of the project:
-- download_data.py <data_folder> <filename>
-- preprocess.py <data_folder> <raw_data_file>
-- eda_figures.py <data_folder> <raw_data_file> <results_folder>
-
+```
+- download_data.py data raw_data.csv
+- preprocess.py data raw_data.csv
+- eda_figures.py data raw_data.csv results
+- model_fitting.py data results
+```
 ## Dependencies
 
   - Python 3.7 and Python packages:
