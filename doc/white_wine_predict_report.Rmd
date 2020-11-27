@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # **Summary**
 
-Here we tried different models such as dummy regressor, ridge and random forest regressor to predict the white wine quality. When we carried out the cross-validation for these three models, we chose random forest regressor as our best performance model by comparing different metrics. We tried hyperparameter optimization with random forest regressor to get the final test score around 0.4311, which seems to be not reasonable here (Note that we have imbalanced data). Therefore, random forest regressor may not be an appropriate model to use here. However, we can find other models to improve our test scores, or we can carry out a different metric or tune other hyperparameters to get a better result. Moreover, we can also change the prediction task from a regression problem to a classification problem in order to find a better prection.
+Here we tried different models such as dummy regressor, ridge and random forest regressor to predict the white wine quality. When we carried out the cross-validation for these three models, we chose random forest regressor as our best performance model by comparing different metrics. We tried hyperparameter optimization with random forest regressor to get the final test score around 0.4311, which seems to be not reasonable here (Note that we have imbalanced data). Therefore, random forest regressor may not be an appropriate model to use here. However, we can find other models to improve our test scores, or we can carry out a different metric or tune other hyperparameters to get a better result. Moreover, we can also change the prediction task from a regression problem to a classification problem in order to find a better prediction.
 
 # **Introduction**
 
