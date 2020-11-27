@@ -4,37 +4,22 @@
 
 This is a group project for DSCI 522 in the MDS program at UBC.
 
-# Proposal 
+## About
 
-For this project, we are interested in predicting subjective wine quality scores, as scored by wine reviewers, based on a set of physicochemical features of the wine.
+Here we attempt to build a regression model which can use physicochemical features of a wine to accurately predict the quality rating of the wine, as it would have been rated by a reviewer. Running the Rigde and RandomForestRegressor models through cross-validation, we found the later to deliver a much higher training score. However, as there was a clear case of overfitting, we ran hyperparameter optimization in an attempt to improve the model. Unfortunately, the test score with the best hyperparameters was only around 0.43. Using the feature importances attribute in RandomForestRegressor, we were able to obtain feature coefficients that confirmed that the alcohol feature had the highest coeffiecient score, this was also our expectation from our initial EDA. In the coming weeks, we intend to refine the model further and/or try other models that may adopt better to our dataset and deliver a higher test score.
 
-We will work with the wine quality data set created by Dr. P. Cortez, 
-Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis. It was sourced from the UCI Machine Learning Repository (Cortez et al., 2009), 
-and you can find it [here](https://archive.ics.uci.edu/ml/datasets/wine+quality). 
-This dataset has two primary groups: white wine data and red wine data. 
-We have chosen to analyse the white wine data since this data has many more observations than the red wine data observations. 
-However, we may also add the red wine data into our analysis if time allows. 
+The dataset that was used for this project is of physicochemical features of wines with the corresponding wine quality ratings, this data set was created by Dr. P. Cortez, Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis. It was sourced from the UCI Machine Learning Repository (Cortez et al., 2009), and you can find it [here](https://archive.ics.uci.edu/ml/datasets/wine+quality). This dataset has two primary groups: white wine data and red wine data. We have chosen to analyse the white wine data since this data has many more observations than the red wine data observations. Note that the quality scores in this wine dataset are based on sensory data and are scored subjectively by reviewers.
 
-We aim to predict the quality of different wines based on their physicochemical features which are included in the dataset. We will be treaing this as a regression problem in Machine learning, by using quality as our target (quality is numeric with scores from 3 to 9, assumed to be given on a 1-10 rating scale).
-There are 11 numeric features in the dataset, which includes physicochemical test results such as citric acid content, free sulfur dioxide content, density, etc. for both the white wine and the red wine data. Each row contains one observation of these physicochemical test results and the resulting quality, and we have 4898 observations in total with no missing values in the white wine data. Note that the quality scores in this white wine data are based on sensory data and are score subjectively by reviewers.
+## Report
 
-The plan for analyzing the white wine data involves using a scikit-learn regression model to predict the wine quality based on the physicochemical test features.
-We will test different regression models 
-such as the linear regression model (`Ridge` or `LinearRegression`) and the random forest trees model to try and train an accurate prediction model for white wine quality. 
-
-One of the first steps of this project will be to perform and exploratory data analysis on the white wine dataset. Looking through the white wine data, we have a set of physicochemical tests such as pH,
-free sulfur dioxide, etc. and we want to know if our features are correlated or not. 
-If our features are related, we need to use `Ridge` instead of `LinearRegression` to avoid low prediction scores. 
-We then visualized correlation plots to observe which features were strongly correlated to each other, and also plotted histograms to uncover how features were correlated to the quality targets. A pandas profiling report was also produced to check feature distributions, check for missing values, and other general eda for our data.
-
-The completed EDA analysis can be found in the eda folder at the root of our group's repository.
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_group27/tree/main/doc)
 
 ## Usage
 
 To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands from the main directory of the project:
-- python src/download_data.py data raw_data.csv
-- python src/preprocess.py data raw_data.csv
-- python src/eda_figures.py data raw_data.csv results
+- download_data.py <data_folder> <filename>
+- preprocess.py <data_folder> <raw_data_file>
+- eda_figures.py <data_folder> <raw_data_file> <results_folder>
 
 ## Dependencies
 

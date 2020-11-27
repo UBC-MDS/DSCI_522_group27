@@ -8,9 +8,7 @@ output:
     keep_md: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 # Predicting quality of white wine from various characteristics
 
@@ -38,16 +36,17 @@ A classification model was built with [@Python] scripts using the [@scikit-learn
 
 To determine how useful strong of an influence each feature has on the quality score we created a correlation plot using the altair package which shows how each of the different features is correlated with each other. This chart showed us that different features had varying degrees of influence on the quality score, with increased alcohol content and decreased density most heavily influencing the quality score. 
 
-```{r fig_1, echo=FALSE, fig.cap="Figure 1. Correlation plot of the correlation between features in the white wine dataset.", out.width = '60%'}
-knitr::include_graphics("../results/feature_correlation.png")
-# [picture of our correlation plot]
-```
+<div class="figure">
+<img src="../results/feature_correlation.png" alt="Figure 1. Correlation plot of the correlation between features in the white wine dataset." width="60%" />
+<p class="caption">Figure 1. Correlation plot of the correlation between features in the white wine dataset.</p>
+</div>
 
 We found that a random forest classifier and, after performing random search hyperparameter optimization, that hyperparameters `n_estimators` and `max_depth` set to values of 300 and 10 respectively produced the best model for our dataset. This resulted in use producing a model with a training score of 0.726 and a testing score of 0.431. We then examined the weight of the features present in this model were able to chart the effect that each feature had on the model. Alcohol was found to be the feature most highly associated with higher quality scores.
 
-```{r fig_2, echo=FALSE, fig.cap="Figure 2. Bar chart showing the target weights of different features of our RandomForestRegressor model.", out.width = '60%'}
-knitr::include_graphics("../results/feature_weight.png")
-```
+<div class="figure">
+<img src="../results/feature_weight.png" alt="Figure 2. Bar chart showing the target weights of different features of our RandomForestRegressor model." width="60%" />
+<p class="caption">Figure 2. Bar chart showing the target weights of different features of our RandomForestRegressor model.</p>
+</div>
 
 # Limitations & Future
 
