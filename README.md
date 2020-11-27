@@ -6,13 +6,13 @@ This is a group project for DSCI 522 in the MDS program at UBC.
 
 ## About
 
-Here we attempt to build a regression model which can use physicochemical features of a wine to accurately predict the quality rating of the wine, as it would have been rated by a reviewer. Running the Rigde and RandomForestRegressor models through cross-validation, we found the later to deliver a much higher training score. However, as there was a clear case of overfitting, we ran hyperparameter optimization in an attempt to improve the model. Unfortunately, the test score with the best hyperparameters was only around 0.43. Using the feature importances attribute in RandomForestRegressor, we were able to obtain feature coefficients that confirmed that the alcohol feature had the highest coeffiecient score, this was also our expectation from our initial EDA. In the coming weeks, we intend to refine the model further and/or try other models that may adopt better to our dataset and deliver a higher test score.
+Here we attempt to build a regression model which can use physicochemical features of a wine to accurately predict the quality rating of the wine, as it would have been rated by a reviewer. Running the ridge and random forest regressor models through cross-validation, we found the later to deliver a much higher training score. However, as there was a clear case of overfitting, we ran hyperparameter optimization in an attempt to improve the model. Unfortunately, the test score with the best hyperparameters was only around 0.43 (Note that we have imbalanced data). Using the feature importances attribute in random forest regressor, we were able to obtain feature coefficients that confirmed that the alcohol feature had the highest coeffiecient score, this was also our expectation from our initial EDA. In the coming weeks, we intend to refine the model further and/or try other models that may adopt better to our dataset and deliver a higher test score.
 
 The dataset that was used for this project is of physicochemical features of wines with the corresponding wine quality ratings, this data set was created by Dr. P. Cortez, Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis. It was sourced from the UCI Machine Learning Repository (Cortez et al., 2009), and you can find it [here](https://archive.ics.uci.edu/ml/datasets/wine+quality). This dataset has two primary groups: white wine data and red wine data. We have chosen to analyse the white wine data since this data has many more observations than the red wine data observations. Note that the quality scores in this wine dataset are based on sensory data and are scored subjectively by reviewers.
 
 ## Report
 
-The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_group27/tree/main/doc)
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_group27/blob/main/doc/white_wine_predict_report.md)
 
 ## Usage
 
