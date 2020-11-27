@@ -1,7 +1,7 @@
 ---
 title: "white_wine_predict_report"
 author: "DSCI 522 group 27"
-bibliography: references.bib
+bibliography: references_white_wine.bib
 output: 
   html_document:
     toc: true
@@ -34,7 +34,7 @@ A classification model was built with [@Python] scripts using the [@scikit-learn
 
 # **Results & Discussion**
 
-To determine how useful strong of an influence each feature has on the quality score we created a correlation plot using the altair package which shows how each of the different features is correlated with each other. This chart showed us that different features had varying degrees of influence on the quality score, with increased alcohol content and decreased density most heavily influencing the quality score.
+To determine how useful strong of an influence each feature has on the quality score we created a correlation plot using the altair package which shows how each of the different features is correlated with each other. This chart showed us that different features had varying degrees of influence on the quality score, with increased alcohol content and decreased density most heavily influencing the quality score. 
 
 <div class="figure">
 <img src="../results/feature_correlation.png" alt="Figure 1. Correlation plot of the correlation between features in the white wine dataset." width="60%" />
