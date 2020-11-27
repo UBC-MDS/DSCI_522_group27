@@ -1,5 +1,5 @@
 ---
-title: "white_wine_predict_report"
+title: "Predicting quality of white wine from various characteristics"
 author: "DSCI 522 group 27"
 bibliography: references_white_wine.bib
 output: 
@@ -9,8 +9,6 @@ output:
 ---
 
 
-
-# Predicting quality of white wine from various characteristics
 
 # **Summary**
 
@@ -26,7 +24,7 @@ Here we want to try different regression models to predict the wine quality base
 
 ## **Data**
 
-The dataset that we used came from the University of California Irvine (UCI) machine learning repository and was collected by Paulo Cortez, University of Minho, Guimarães, Portugal and A. Cerdeira, F. Almeida, T. Matos with help from J. Reis, Viticulture Commission of the Vinho Verde Region(CVRVV), Porto, Portugal in 2009. The dataset contains the results of various physiochemical tests on white "Vinho Verde" wine samples from Northern Portugal and can be found [here](https://archive.ics.uci.edu/ml/datasets/wine+quality) specifically with the [white wine dataset](%5Bhttps://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv).](<https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv>).) No additional features or specific branding of each wine is available in the dataset for privacy purposes. Each row in the dataset represents a single wine which was tested and scored based on sensory data.
+The dataset that we used came from the University of California Irvine (UCI) machine learning repository and was collected by Paulo Cortez, University of Minho, Guimarães, Portugal and A. Cerdeira, F. Almeida, T. Matos with help from J. Reis, Viticulture Commission of the Vinho Verde Region(CVRVV), Porto, Portugal in 2009. The dataset contains the results of various physiochemical tests on white "Vinho Verde" wine samples from Northern Portugal and can be found [here](https://archive.ics.uci.edu/ml/datasets/wine+quality) specifically with the [white wine dataset](%5Bhttps://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv). No additional features or specific branding of each wine is available in the dataset for privacy purposes. Each row in the dataset represents a single wine which was tested and scored based on sensory data.
 
 ## **Analysis**
 
@@ -50,12 +48,11 @@ We found that a random forest classifier and, after performing random search hyp
 
 # Limitations & Future
 
-Some potential limitations of our model thus far are that we have only tested a handful of different regression methods and only performed light hyperparameter optimization thus far. There likely exists combinations which will lead to better scoring in our model. If provided with more time we would be able to improve our analysis by looking for these potentially better model/hyperparameter combinations. Another way to improve our model would be to implement a form of feature selection given that we are still including all features and that many of them seem to have little influence on the scoring of our model.
-
-STILL NEED TO FIND REFERENCES FOR...
-
--   docopt (maybe need python version)?
-
--   os
+Some potential limitations of our model thus far are that we have only tested a handful of different regression methods and only performed light hyperparameter optimization thus far. There likely exists combinations which will lead to better scoring in our model. If provided with more time we would be able to improve our analysis by looking for these potentially better model/hyperparameter combinations. SVM might be an effective model to test for this specific type of problem as mentioned in [@CORTEZ2009547]. Another way to improve our model would be to implement a form of feature selection (such as RFECV) given that we are still including all features and that many of them seem to have little influence on the scoring of our model.
 
 # References
+
+| P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis.
+|       Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
+| 
+| 
