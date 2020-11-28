@@ -26,6 +26,13 @@ def make_eda_figures(data_folder, raw_data_file, results_folder):
     make_eda_figures('data', 'raw_data.csv', 'results')
 
    """
+    if not type(data_folder) == str:
+        raise ValueError("data_folder argument should be passed as str.")
+    if not type(raw_data_file) == str:
+        raise ValueError("raw_data_file argument should be passed as str.")
+    if not type(results_folder) == str:
+        raise ValueError("results_folder argument should be passed as str.")
+
     # Read raw data from download_data.py script
     white_wine_df = pd.read_csv(
         os.path.join(os.path.join(data_folder, raw_data_file)), index_col=0
@@ -98,9 +105,9 @@ def make_eda_figures(data_folder, raw_data_file, results_folder):
     if not os.path.isdir(results_folder):
         os.mkdir(results_folder)
     quality_distributions.save(
-        os.path.join(results_folder, "quality_distributions_figure.html")
+        os.path.join(results_folder, "quality_distributions_figure.png")
     )
-    cor_plot_text.save(os.path.join(results_folder, "corr_figure.html"))
+    cor_plot_text.save(os.path.join(results_folder, "corr_figure.png"))
 
 
 if __name__ == "__main__":
