@@ -20,7 +20,7 @@ df <- read_feather(path)
 
 # **Summary**
 
-Here we tried different models such as dummy regressor, ridge and random forest regressor to predict the white wine quality. When we carried out the cross-validation for these three models, we chose random forest regressor as our best performance model by comparing different metrics. We tried hyperparameter optimization with random forest regressor to get the final test score around 0.490, which seems to be not reasonable here (Note that we have imbalanced data). Therefore, random forest regressor may not be an appropriate model to use here. However, we can find other models to improve our test scores, or we can carry out a different metric or tune other hyperparameters to get a better result. Moreover, we can also change the prediction task from a regression problem to a classification problem in order to find a better prediction.
+Here we tried different models such as dummy regressor, ridge and random forest regressor to predict the white wine quality. When we carried out the cross-validation for these three models, we chose random forest regressor as our best performance model by comparing different metrics. We tried hyperparameter optimization with random forest regressor to get the final test score around 0.505, which seems to be not reasonable here (Note that we have imbalanced data). Therefore, random forest regressor may not be an appropriate model to use here. However, we can find other models to improve our test scores, or we can carry out a different metric or tune other hyperparameters to get a better result. Moreover, we can also change the prediction task from a regression problem to a classification problem in order to find a better prediction.
 
 # **Introduction**
 
@@ -36,7 +36,7 @@ The dataset that we used came from the University of California Irvine (UCI) mac
 
 ## **Analysis**
 
-A classification model was built with python scripts using the sk-learn `RandomForestRegressor` algorithm was and allowed us to predict a sensory score based on the physiochemical testing information recorded for each wine [@Python] [@scikit-learn]. Because of the privacy constraints of the data our dataset is somewhat limited since useful potentially factors that might influence the scoring such as grape types, brand names, or price are not available to us. Assumptions we made regarding this dataset are that the quality scores came from the opinions of wine critics and that testing for all wines was consistent. The model was fit using all of the variables from the dataset. Hyperparameters `n_estimators` and `max_depth` were optimized via random search while all other hyperparameters used the default sklearn `RandomForestRegressor` values. The data was processed using the pandas package [@reback2020pandas] . This document was compiled using an R document file with scripts run using the docopt package [@R] [@docopt]. Tables were stored using feather files (with dependency on arrow) and displayed using knitr's kable function [@feather], [@arrow], [@knitr].
+A classification model was built with python [@Python] scripts using the sk-learn [@scikit-learn] `RandomForestRegressor` algorithm and allowed us to predict a sensory score based on the physiochemical testing information recorded for each wine. Because of the privacy constraints of the data our dataset is somewhat limited since useful potentially factors that might influence the scoring such as grape types, brand names, or price are not available to us. Assumptions we made regarding this dataset are that the quality scores came from the opinions of wine critics and that testing for all wines was consistent. The model was fit using all of the variables from the dataset. Hyperparameters `n_estimators` and `max_depth` were optimized via random search while all other hyperparameters used the default sklearn `RandomForestRegressor` values. The data was processed using the pandas package [@reback2020pandas] . This document was compiled using an R [@R] document file with scripts run using the docopt package [@docopt]. Tables were stored using feather [@feather] files (with dependency on arrow [@arrow]) and displayed using knitr's [@knitr] kable function.
 
 # **Results & Discussion**
 
@@ -53,18 +53,20 @@ To determine how useful strong of an influence each feature has on the quality s
 knitr::include_graphics("../results/corr_figure.png")
 ```
 
-In order to determine which model works best with our data we decided to test both the `RidgeCV()` and `RandomForest()` to compare them against the dummy regressor models. We present the crossover values of this testing in Table 1. We found that random forest methods provided the best test and training model scores and decided to proceed with those.
+In order to determine which model works best with our data we decided to test both the `RidgeCV()` and `RandomForest()` to compare them against the dummy regressor model. We present the cross-validation values of this testing in Table 1. We found that random forest methods provided the best test and training model scores and decided to proceed with those.
 
-```{r table_1, echo=FALSE, fig.cap="Table 1. Table of crossover results for each tested model.", out.width = '60%'}
+```{r table_1, echo=FALSE, out.width = '60%'}
 path <- "../results/initial_crossval_results.feather"
-kable(read_feather(path))
+kable(read_feather(path),
+      caption="Table 1. Table of cross-validation results for each tested model")
 ```
 
-We found that a random forest classifier and, after performing random search hyperparameter optimization, that hyperparameters `n_estimators` and `max_depth` set to values of 300 and 10 respectively produced the best model for our dataset. This resulted in use producing a model with a training score of 0.933 and a testing score of 0.490 (Table 2).
+We found that a random forest classifier and, after performing random search hyperparameter optimization, that hyperparameters `n_estimators` and `max_depth` set to values of 300 and 10 respectively produced the best model for our dataset. This resulted in us producing a model with a training score of 0.929 and a testing score of 0.505 (Table 2).
 
-```{r table_2, echo=FALSE, fig.cap="Table 2. Correlation plot of the correlation between features in the white wine dataset.", out.width = '60%'}
+```{r table_2, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_crossval_results.feather"
-kable(read_feather(path))
+kable(read_feather(path),
+      caption="Table 2. Table of cross-validation results of the tuned model")
 ```
 
 We then examined the weight of the features present in our most effective random forest model and charted the effect that each feature had on the model (Figure 3). Alcohol was found to be the feature most highly associated with higher quality scores. Other features such as density, citric acid, and sulphates appear to have limited weight in our model.
