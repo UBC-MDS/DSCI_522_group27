@@ -28,22 +28,61 @@ The dataset that we used came from the University of California Irvine (UCI) mac
 
 ## **Analysis**
 
-A classification model was built with python scripts using the sk-learn `RandomForestRegressor` algorithm was and allowed us to predict a sensory score based on the physiochemical testing information recorded for each wine [@Python] [@scikit-learn]. Because of the privacy constraints of the data our dataset is somewhat limited since useful potentially factors that might influence the scoring such as grape types, brand names, or price are not available to us. Assumptions we made regarding this dataset are that the quality scores came from the opinions of wine critics and that testing for all wines was consistent. The model was fit using all??? of the variables from the dataset. Hyperparameters `n_estimators` and `max_depth` were optimized via random search while all other hyperparameters used the default sklearn `RandomForestRegressor` values. The data was processed using the pandas package [@reback2020pandas] . This document was compiled using an R document file with scripts run using the docopt package [@R] [@docopt].
+A classification model was built with python scripts using the sk-learn `RandomForestRegressor` algorithm was and allowed us to predict a sensory score based on the physiochemical testing information recorded for each wine [@Python] [@scikit-learn]. Because of the privacy constraints of the data our dataset is somewhat limited since useful potentially factors that might influence the scoring such as grape types, brand names, or price are not available to us. Assumptions we made regarding this dataset are that the quality scores came from the opinions of wine critics and that testing for all wines was consistent. The model was fit using all of the variables from the dataset. Hyperparameters `n_estimators` and `max_depth` were optimized via random search while all other hyperparameters used the default sklearn `RandomForestRegressor` values. The data was processed using the pandas package [@reback2020pandas] . This document was compiled using an R document file with scripts run using the docopt package [@R] [@docopt]. Tables were stored using feather files (with dependency on arrow) and displayed using knitr's kable function [@feather], [@arrow], [@knitr].
 
 # **Results & Discussion**
 
-To determine how useful strong of an influence each feature has on the quality score we created a correlation plot using the altair package which shows how each of the different features is correlated with each other. This chart showed us that different features had varying degrees of influence on the quality score, with increased alcohol content and decreased density most heavily influencing the quality score. 
+After splitting our dataset into a training set and a test set we plotted the distribution of the quality scores for each wine (Figure 1). Despite the quality scoring being performed a scale from 1-10 only values in the range of 3-9 were observed. 6 was the most common score observed across all testing.
 
 <div class="figure">
-<img src="../results/feature_correlation.png" alt="Figure 1. Correlation plot of the correlation between features in the white wine dataset." width="60%" />
-<p class="caption">Figure 1. Correlation plot of the correlation between features in the white wine dataset.</p>
+<img src="../results/quality_distributions_figure.png" alt="Figure 1. Quality distribution of wines in the training and test datasets." width="60%" />
+<p class="caption">Figure 1. Quality distribution of wines in the training and test datasets.</p>
 </div>
 
-We found that a random forest classifier and, after performing random search hyperparameter optimization, that hyperparameters `n_estimators` and `max_depth` set to values of 300 and 10 respectively produced the best model for our dataset. This resulted in use producing a model with a training score of 0.933 and a testing score of 0.490. We then examined the weight of the features present in this model were able to chart the effect that each feature had on the model. Alcohol was found to be the feature most highly associated with higher quality scores.
+To determine how useful strong of an influence each feature has on the quality score we created a correlation plot using the altair package which shows how each of the different features is correlated with each other (Figure 2). This chart showed us that different features had varying degrees of influence on the quality score, with increased alcohol content and decreased density most heavily influencing the quality score. 
 
 <div class="figure">
-<img src="../results/feature_weight.png" alt="Figure 2. Bar chart showing the target weights of different features of our RandomForestRegressor model." width="60%" />
-<p class="caption">Figure 2. Bar chart showing the target weights of different features of our RandomForestRegressor model.</p>
+<img src="../results/corr_figure.png" alt="Figure 2. Correlation plot of the correlation between features in the white wine dataset." width="60%" />
+<p class="caption">Figure 2. Correlation plot of the correlation between features in the white wine dataset.</p>
+</div>
+
+In order to determine which model works best with our data we decided to test both the `RidgeCV()` and `RandomForest()` to compare them against the dummy regressor models. We present the crossover values of this testing in Table 1. We found that random forest methods provided the best test and training model scores and decided to proceed with those.
+
+
+|index                         | dummyregressor|      ridge| randomforest|
+|:-----------------------------|--------------:|----------:|------------:|
+|fit_time                      |      0.0010302|  0.0060800|    1.3699442|
+|score_time                    |      0.0010922|  0.0024696|    0.0216233|
+|test_neg_mean_squared_error   |     -0.7899251| -0.5794524|   -0.3967156|
+|train_neg_mean_squared_error  |     -0.7896847| -0.5687437|   -0.0552050|
+|test_neg_root_mean_square     |     -0.8884729| -0.7610260|   -0.6294461|
+|train_neg_root_mean_square    |     -0.8886236| -0.7541385|   -0.2349525|
+|test_neg_mean_absolute_error  |     -0.6766545| -0.5909963|   -0.4584929|
+|train_neg_mean_absolute_error |     -0.6765906| -0.5871736|   -0.1700653|
+|test_r2                       |     -0.0007601|  0.2655188|    0.4975315|
+|train_r2                      |      0.0000000|  0.2797630|    0.9300817|
+
+We found that a random forest classifier and, after performing random search hyperparameter optimization, that hyperparameters `n_estimators` and `max_depth` set to values of 300 and 10 respectively produced the best model for our dataset. This resulted in use producing a model with a training score of 0.933 and a testing score of 0.490 (Table 2).
+
+
+|index                         | Tuned Model|
+|:-----------------------------|-----------:|
+|fit_time                      |   7.0970350|
+|score_time                    |   0.0921793|
+|test_neg_mean_squared_error   |  -0.3907503|
+|train_neg_mean_squared_error  |  -0.0558113|
+|test_neg_root_mean_square     |  -0.6247329|
+|train_neg_root_mean_square    |  -0.2362427|
+|test_neg_mean_absolute_error  |  -0.4570368|
+|train_neg_mean_absolute_error |  -0.1738926|
+|test_r2                       |   0.5050189|
+|train_r2                      |   0.9293188|
+
+We then examined the weight of the features present in our most effective random forest model and charted the effect that each feature had on the model (Figure 3). Alcohol was found to be the feature most highly associated with higher quality scores. Other features such as density, citric acid, and sulphates appear to have limited weight in our model.
+
+<div class="figure">
+<img src="../results/feature_weight.png" alt="Figure 3. Bar chart showing the target weights of different features of our RandomForestRegressor model." width="60%" />
+<p class="caption">Figure 3. Bar chart showing the target weights of different features of our RandomForestRegressor model.</p>
 </div>
 
 # Limitations & Future
