@@ -80,8 +80,3 @@ knitr::include_graphics("../results/feature_weight.png")
 Some potential limitations of our model thus far are that we have only tested a handful of different regression methods and only performed light hyperparameter optimization thus far. There likely exists combinations which will lead to better scoring in our model. If provided with more time we would be able to improve our analysis by looking for these potentially better model/hyperparameter combinations. SVM might be an effective model to test for this specific type of problem as mentioned in the paper by Cortez et al. [@CORTEZ2009547]. Another way to improve our model would be to implement a form of feature selection (such as RFECV) given that we are still including all features and that many of them seem to have little influence on the scoring of our model. We could also potentially find a larger dataset (i.e. with wine from around the world) or with more features since the one we are currently working with has a limited number of features (i.e. type of grape used in the wine) due for the sake of privacy protection.
 
 # References
-
-| P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis.
-|       Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
-| 
-| 
