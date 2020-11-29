@@ -2,10 +2,9 @@
 title: "Predicting quality of white wine from various characteristics"
 author: "DSCI 522 group 27"
 bibliography: references_white_wine.bib
-output: 
+output:
   html_document:
-    toc: true
-    keep_md: true
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
