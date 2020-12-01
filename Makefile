@@ -1,4 +1,4 @@
-# white wine prediciton data pipeline
+# white wine prediction data pipeline
 # author: DSCI 522 group 27
 # date: 2020-12-05
 
