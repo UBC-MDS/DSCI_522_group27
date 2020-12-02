@@ -61,24 +61,25 @@ single wine which was tested and scored based on sensory data.
 **Analysis**
 ------------
 
-A classification model was built with python (Van Rossum and Drake 2009)
-scripts using the sk-learn (Pedregosa et al. 2011)
+A classification model was built with python scripts using the sk-learn
 `RandomForestRegressor` algorithm and allowed us to predict a sensory
 score based on the physiochemical testing information recorded for each
-wine. Because of the privacy constraints of the data our dataset is
-somewhat limited since useful potentially factors that might influence
-the scoring such as grape types, brand names, or price are not available
-to us. Assumptions we made regarding this dataset are that the quality
-scores came from the opinions of wine critics and that testing for all
-wines was consistent. The model was fit using all of the variables from
-the dataset. Hyperparameters `n_estimators` and `max_depth` were
-optimized via random search while all other hyperparameters used the
-default sklearn `RandomForestRegressor` values. The data was processed
-using the pandas package (team 2020) . This document was compiled using
-an R (R Core Team 2019) document file with scripts run using the docopt
-package (de Jonge 2020). Tables were stored using feather (Wickham 2019)
-files (with dependency on arrow (François et al. 2020)) and displayed
-using knitr’s (Xie 2020) kable function.
+wine(Van Rossum and Drake 2009), (Pedregosa et al. 2011). Because of the
+privacy constraints of the data our dataset is somewhat limited since
+useful potentially factors that might influence the scoring such as
+grape types, brand names, or price are not available to us. Assumptions
+we made regarding this dataset are that the quality scores came from the
+opinions of wine critics and that testing for all wines was consistent.
+The model was fit using all of the variables from the dataset.
+Hyperparameters `n_estimators` and `max_depth` were optimized via random
+search while all other hyperparameters used the default sklearn
+`RandomForestRegressor` values. The data was processed using the pandas
+package and EDA was performed using the pandas-profiling package
+\[@reback2020pandas\] \[@pandasprofiling2019\]. This document was
+compiled using an R document file with scripts run using the docopt
+package (R Core Team 2019), (de Jonge 2020). Tables were stored using
+feather files (with dependency on arrow) and displayed using knitr’s
+kable function (Wickham 2019), (François et al. 2020), (Xie 2020).
 
 **Results & Discussion**
 ========================
@@ -101,11 +102,12 @@ datasets.
 
 To determine how useful strong of an influence each feature has on the
 quality score we created a correlation plot using the altair package
-which shows how each of the different features is correlated with each
-other (Figure 2). This chart showed us that different features had
+(built off of Vega-Lite) which shows how each of the different features
+is correlated with each other (Figure 2) \[@VanderPlas2018\],
+\[@Satyanarayan2017\]. This chart showed us that different features had
 varying degrees of influence on the quality score, with increased
 alcohol content and decreased density most heavily influencing the
-quality score. 
+quality score.
 
 <div class="figure">
 
@@ -126,16 +128,16 @@ those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0015496 |  0.0049465 |    1.4148116 |
-| score\_time                       |      0.0012597 |  0.0034886 |    0.0199514 |
-| test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3952386 |
-| train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0561528 |
-| test\_neg\_root\_mean\_square     |     -0.8884729 | -0.7610260 |   -0.6282872 |
-| train\_neg\_root\_mean\_square    |     -0.8886236 | -0.7541385 |   -0.2369579 |
-| test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4576842 |
-| train\_neg\_mean\_absolute\_error |     -0.6765906 | -0.5871736 |   -0.1715008 |
-| test\_r2                          |     -0.0007601 |  0.2655188 |    0.4993622 |
-| train\_r2                         |      0.0000000 |  0.2797630 |    0.9288795 |
+| fit\_time                         |      0.0022741 |  0.0499722 |    3.7706888 |
+| score\_time                       |      0.0034262 |  0.0097569 |    0.0435739 |
+| test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3962930 |
+| train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0556099 |
+| test\_neg\_root\_mean\_square     |     -0.8884729 | -0.7610260 |   -0.6291717 |
+| train\_neg\_root\_mean\_square    |     -0.8886236 | -0.7541385 |   -0.2358139 |
+| test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4604105 |
+| train\_neg\_mean\_absolute\_error |     -0.6765906 | -0.5871736 |   -0.1709740 |
+| test\_r2                          |     -0.0007601 |  0.2655188 |    0.4979000 |
+| train\_r2                         |      0.0000000 |  0.2797630 |    0.9295758 |
 
 Table 1. Table of cross-validation results for each tested model
 
@@ -147,16 +149,16 @@ training score of 0.929 and a testing score of 0.505 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   9.5947596 |
-| score\_time                       |   0.1203021 |
-| test\_neg\_mean\_squared\_error   |  -0.3910278 |
-| train\_neg\_mean\_squared\_error  |  -0.0558888 |
-| test\_neg\_root\_mean\_square     |  -0.6249407 |
-| train\_neg\_root\_mean\_square    |  -0.2364070 |
-| test\_neg\_mean\_absolute\_error  |  -0.4566409 |
-| train\_neg\_mean\_absolute\_error |  -0.1737830 |
-| test\_r2                          |   0.5047041 |
-| train\_r2                         |   0.9292193 |
+| fit\_time                         |   7.8638836 |
+| score\_time                       |   0.0961501 |
+| test\_neg\_mean\_squared\_error   |  -0.3915798 |
+| train\_neg\_mean\_squared\_error  |  -0.0539640 |
+| test\_neg\_root\_mean\_square     |  -0.6253666 |
+| train\_neg\_root\_mean\_square    |  -0.2322998 |
+| test\_neg\_mean\_absolute\_error  |  -0.4559461 |
+| train\_neg\_mean\_absolute\_error |  -0.1692068 |
+| test\_r2                          |   0.5039385 |
+| train\_r2                         |   0.9316578 |
 
 Table 2. Table of cross-validation results of the tuned model
 
@@ -238,13 +240,6 @@ Python.” *Journal of Machine Learning Research* 12: 2825–30.
 R Core Team. 2019. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 <https://www.R-project.org/>.
-
-</div>
-
-<div id="ref-reback2020pandas">
-
-team, The pandas development. 2020. *Pandas-Dev/Pandas: Pandas* (version
-latest). Zenodo. <https://doi.org/10.5281/zenodo.3509134>.
 
 </div>
 
