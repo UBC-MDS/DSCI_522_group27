@@ -86,12 +86,9 @@ observed across all testing.
 <div class="figure">
 
 <img src="../results/quality_distributions_figure.png" alt="Figure 1. Quality distribution of wines in the training and test datasets." width="60%" />
-
 <p class="caption">
-
 Figure 1. Quality distribution of wines in the training and test
 datasets.
-
 </p>
 
 </div>
@@ -107,12 +104,9 @@ quality score. 
 <div class="figure">
 
 <img src="../results/corr_figure.png" alt="Figure 2. Correlation plot of the correlation between features in the white wine dataset." width="60%" />
-
 <p class="caption">
-
 Figure 2. Correlation plot of the correlation between features in the
 white wine dataset.
-
 </p>
 
 </div>
@@ -124,18 +118,18 @@ this testing in Table 1. We found that random forest methods provided
 the best test and training model scores and decided to proceed with
 those.
 
-| index                             | dummyregressor |       ridge | randomforest |
-| :-------------------------------- | -------------: | ----------: | -----------: |
-| fit\_time                         |      0.0010302 |   0.0060800 |    1.3699442 |
-| score\_time                       |      0.0010922 |   0.0024696 |    0.0216233 |
-| test\_neg\_mean\_squared\_error   |    \-0.7899251 | \-0.5794524 |  \-0.3967156 |
-| train\_neg\_mean\_squared\_error  |    \-0.7896847 | \-0.5687437 |  \-0.0552050 |
-| test\_neg\_root\_mean\_square     |    \-0.8884729 | \-0.7610260 |  \-0.6294461 |
-| train\_neg\_root\_mean\_square    |    \-0.8886236 | \-0.7541385 |  \-0.2349525 |
-| test\_neg\_mean\_absolute\_error  |    \-0.6766545 | \-0.5909963 |  \-0.4584929 |
-| train\_neg\_mean\_absolute\_error |    \-0.6765906 | \-0.5871736 |  \-0.1700653 |
-| test\_r2                          |    \-0.0007601 |   0.2655188 |    0.4975315 |
-| train\_r2                         |      0.0000000 |   0.2797630 |    0.9300817 |
+| index                             | dummyregressor |      ridge | randomforest |
+|:----------------------------------|---------------:|-----------:|-------------:|
+| fit\_time                         |      0.0011034 |  0.0031612 |    1.1513251 |
+| score\_time                       |      0.0009102 |  0.0026707 |    0.0170785 |
+| test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3947772 |
+| train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0560623 |
+| test\_neg\_root\_mean\_square     |     -0.8884729 | -0.7610260 |   -0.6279805 |
+| train\_neg\_root\_mean\_square    |     -0.8886236 | -0.7541385 |   -0.2367718 |
+| test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4579829 |
+| train\_neg\_mean\_absolute\_error |     -0.6765906 | -0.5871736 |   -0.1710979 |
+| test\_r2                          |     -0.0007601 |  0.2655188 |    0.4999397 |
+| train\_r2                         |      0.0000000 |  0.2797630 |    0.9290014 |
 
 Table 1. Table of cross-validation results for each tested model
 
@@ -146,17 +140,17 @@ best model for our dataset. This resulted in us producing a model with a
 training score of 0.929 and a testing score of 0.505 (Table 2).
 
 | index                             | Tuned Model |
-| :-------------------------------- | ----------: |
-| fit\_time                         |   7.0970350 |
-| score\_time                       |   0.0921793 |
-| test\_neg\_mean\_squared\_error   | \-0.3907503 |
-| train\_neg\_mean\_squared\_error  | \-0.0558113 |
-| test\_neg\_root\_mean\_square     | \-0.6247329 |
-| train\_neg\_root\_mean\_square    | \-0.2362427 |
-| test\_neg\_mean\_absolute\_error  | \-0.4570368 |
-| train\_neg\_mean\_absolute\_error | \-0.1738926 |
-| test\_r2                          |   0.5050189 |
-| train\_r2                         |   0.9293188 |
+|:----------------------------------|------------:|
+| fit\_time                         |   6.8258386 |
+| score\_time                       |   0.0889796 |
+| test\_neg\_mean\_squared\_error   |  -0.3905129 |
+| train\_neg\_mean\_squared\_error  |  -0.0559987 |
+| test\_neg\_root\_mean\_square     |  -0.6245227 |
+| train\_neg\_root\_mean\_square    |  -0.2366373 |
+| test\_neg\_mean\_absolute\_error  |  -0.4567369 |
+| train\_neg\_mean\_absolute\_error |  -0.1739385 |
+| test\_r2                          |   0.5053888 |
+| train\_r2                         |   0.9290829 |
 
 Table 2. Table of cross-validation results of the tuned model
 
@@ -169,13 +163,10 @@ model.
 
 <div class="figure">
 
-<img src="../results/feature_weight.png" alt="Figure 3. Bar chart showing the target weights of different features of our RandomForestRegressor model." width="60%" />
-
+<img src="../results/weights_figure.png" alt="Figure 3. Bar chart showing the target weights of different features of our RandomForestRegressor model." width="60%" />
 <p class="caption">
-
 Figure 3. Bar chart showing the target weights of different features of
 our RandomForestRegressor model.
-
 </p>
 
 </div>
@@ -189,7 +180,7 @@ combinations which will lead to better scoring in our model. If provided
 with more time we would be able to improve our analysis by looking for
 these potentially better model/hyperparameter combinations. SVM might be
 an effective model to test for this specific type of problem as
-mentioned in the paper by Cortez et al. (Cortez et al. 2009). Another
+mentioned in the paper by Cortez et al. (Cortez et al. 2009). Another
 way to improve our model would be to implement a form of feature
 selection (such as RFECV) given that we are still including all features
 and that many of them seem to have little influence on the scoring of
@@ -200,33 +191,33 @@ grape used in the wine) due for the sake of privacy protection.
 
 # References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-CORTEZ2009547">
+<div id="ref-CORTEZ2009547" class="csl-entry">
 
 Cortez, Paulo, Antonio Cerdeira, Fernando Almeida, Telmo Matos, and Jose
 Reis. 2009. “Modeling Wine Preferences by Data Mining from
 Physicochemical Properties.” *Decision Support Systems* 47 (4): 547–53.
-<https://doi.org/https://doi.org/10.1016/j.dss.2009.05.016>.
+https://doi.org/<https://doi.org/10.1016/j.dss.2009.05.016>.
 
 </div>
 
-<div id="ref-docopt">
+<div id="ref-docopt" class="csl-entry">
 
 de Jonge, Edwin. 2020. *Docopt: Command-Line Interface Specification
 Language*. <https://CRAN.R-project.org/package=docopt>.
 
 </div>
 
-<div id="ref-arrow">
+<div id="ref-arrow" class="csl-entry">
 
 François, Romain, Jeroen Ooms, Neal Richardson, and Apache Arrow. 2020.
-*Arrow: Integration to ’Apache’ ’Arrow’*.
+*Arrow: Integration to ’apache’ ’arrow’*.
 <https://CRAN.R-project.org/package=arrow>.
 
 </div>
 
-<div id="ref-scikit-learn">
+<div id="ref-scikit-learn" class="csl-entry">
 
 Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O.
 Grisel, M. Blondel, et al. 2011. “Scikit-Learn: Machine Learning in
@@ -234,7 +225,7 @@ Python.” *Journal of Machine Learning Research* 12: 2825–30.
 
 </div>
 
-<div id="ref-R">
+<div id="ref-R" class="csl-entry">
 
 R Core Team. 2019. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
@@ -242,31 +233,31 @@ Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-reback2020pandas">
+<div id="ref-reback2020pandas" class="csl-entry">
 
 team, The pandas development. 2020. *Pandas-Dev/Pandas: Pandas* (version
 latest). Zenodo. <https://doi.org/10.5281/zenodo.3509134>.
 
 </div>
 
-<div id="ref-Python">
+<div id="ref-Python" class="csl-entry">
 
 Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
 Scotts Valley, CA: CreateSpace.
 
 </div>
 
-<div id="ref-feather">
+<div id="ref-feather" class="csl-entry">
 
-Wickham, Hadley. 2019. *Feather: R Bindings to the Feather ’Api’*.
+Wickham, Hadley. 2019. *Feather: R Bindings to the Feather ’API’*.
 <https://CRAN.R-project.org/package=feather>.
 
 </div>
 
-<div id="ref-knitr">
+<div id="ref-knitr" class="csl-entry">
 
 Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
-Generation in R*. <https://yihui.org/knitr/>.
+Generation in r*. <https://yihui.org/knitr/>.
 
 </div>
 
