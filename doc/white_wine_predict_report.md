@@ -2,7 +2,8 @@ Predicting quality of white wine from various characteristics
 ================
 DSCI 522 group 27
 
-# **Summary**
+**Summary**
+===========
 
 Here we tried different models such as dummy regressor, ridge and random
 forest regressor to predict the white wine quality. When we carried out
@@ -17,7 +18,8 @@ metric or tune other hyperparameters to get a better result. Moreover,
 we can also change the prediction task from a regression problem to a
 classification problem in order to find a better prediction.
 
-# **Introduction**
+**Introduction**
+================
 
 The wine market occupies a significant position among consumers. For
 manufacturers, the quality of alcohol significantly affects the sales of
@@ -36,9 +38,11 @@ question is crucial since we want to support the wine tasting
 evaluations of oenologists and contribute to wine production (Cortez et
 al. 2009).
 
-# **Methods**
+**Methods**
+===========
 
-## **Data**
+**Data**
+--------
 
 The dataset that we used came from the University of California Irvine
 (UCI) machine learning repository and was collected by Paulo Cortez,
@@ -54,7 +58,8 @@ No additional features or specific branding of each wine is available in
 the dataset for privacy purposes. Each row in the dataset represents a
 single wine which was tested and scored based on sensory data.
 
-## **Analysis**
+**Analysis**
+------------
 
 A classification model was built with python (Van Rossum and Drake 2009)
 scripts using the sk-learn (Pedregosa et al. 2011)
@@ -75,7 +80,8 @@ package (de Jonge 2020). Tables were stored using feather (Wickham 2019)
 files (with dependency on arrow (François et al. 2020)) and displayed
 using knitr’s (Xie 2020) kable function.
 
-# **Results & Discussion**
+**Results & Discussion**
+========================
 
 After splitting our dataset into a training set and a test set we
 plotted the distribution of the quality scores for each wine (Figure 1).
@@ -120,16 +126,16 @@ those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0011034 |  0.0031612 |    1.1513251 |
-| score\_time                       |      0.0009102 |  0.0026707 |    0.0170785 |
-| test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3947772 |
-| train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0560623 |
-| test\_neg\_root\_mean\_square     |     -0.8884729 | -0.7610260 |   -0.6279805 |
-| train\_neg\_root\_mean\_square    |     -0.8886236 | -0.7541385 |   -0.2367718 |
-| test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4579829 |
-| train\_neg\_mean\_absolute\_error |     -0.6765906 | -0.5871736 |   -0.1710979 |
-| test\_r2                          |     -0.0007601 |  0.2655188 |    0.4999397 |
-| train\_r2                         |      0.0000000 |  0.2797630 |    0.9290014 |
+| fit\_time                         |      0.0015496 |  0.0049465 |    1.4148116 |
+| score\_time                       |      0.0012597 |  0.0034886 |    0.0199514 |
+| test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3952386 |
+| train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0561528 |
+| test\_neg\_root\_mean\_square     |     -0.8884729 | -0.7610260 |   -0.6282872 |
+| train\_neg\_root\_mean\_square    |     -0.8886236 | -0.7541385 |   -0.2369579 |
+| test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4576842 |
+| train\_neg\_mean\_absolute\_error |     -0.6765906 | -0.5871736 |   -0.1715008 |
+| test\_r2                          |     -0.0007601 |  0.2655188 |    0.4993622 |
+| train\_r2                         |      0.0000000 |  0.2797630 |    0.9288795 |
 
 Table 1. Table of cross-validation results for each tested model
 
@@ -141,16 +147,16 @@ training score of 0.929 and a testing score of 0.505 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   6.8258386 |
-| score\_time                       |   0.0889796 |
-| test\_neg\_mean\_squared\_error   |  -0.3905129 |
-| train\_neg\_mean\_squared\_error  |  -0.0559987 |
-| test\_neg\_root\_mean\_square     |  -0.6245227 |
-| train\_neg\_root\_mean\_square    |  -0.2366373 |
-| test\_neg\_mean\_absolute\_error  |  -0.4567369 |
-| train\_neg\_mean\_absolute\_error |  -0.1739385 |
-| test\_r2                          |   0.5053888 |
-| train\_r2                         |   0.9290829 |
+| fit\_time                         |   9.5947596 |
+| score\_time                       |   0.1203021 |
+| test\_neg\_mean\_squared\_error   |  -0.3910278 |
+| train\_neg\_mean\_squared\_error  |  -0.0558888 |
+| test\_neg\_root\_mean\_square     |  -0.6249407 |
+| train\_neg\_root\_mean\_square    |  -0.2364070 |
+| test\_neg\_mean\_absolute\_error  |  -0.4566409 |
+| train\_neg\_mean\_absolute\_error |  -0.1737830 |
+| test\_r2                          |   0.5047041 |
+| train\_r2                         |   0.9292193 |
 
 Table 2. Table of cross-validation results of the tuned model
 
@@ -171,7 +177,8 @@ our RandomForestRegressor model.
 
 </div>
 
-# Limitations & Future
+Limitations & Future
+====================
 
 Some potential limitations of our model thus far are that we have only
 tested a handful of different regression methods and only performed
@@ -180,7 +187,7 @@ combinations which will lead to better scoring in our model. If provided
 with more time we would be able to improve our analysis by looking for
 these potentially better model/hyperparameter combinations. SVM might be
 an effective model to test for this specific type of problem as
-mentioned in the paper by Cortez et al. (Cortez et al. 2009). Another
+mentioned in the paper by Cortez et al. (Cortez et al. 2009). Another
 way to improve our model would be to implement a form of feature
 selection (such as RFECV) given that we are still including all features
 and that many of them seem to have little influence on the scoring of
@@ -189,35 +196,36 @@ wine from around the world) or with more features since the one we are
 currently working with has a limited number of features (i.e. type of
 grape used in the wine) due for the sake of privacy protection.
 
-# References
+References
+==========
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references hanging-indent">
 
-<div id="ref-CORTEZ2009547" class="csl-entry">
+<div id="ref-CORTEZ2009547">
 
 Cortez, Paulo, Antonio Cerdeira, Fernando Almeida, Telmo Matos, and Jose
 Reis. 2009. “Modeling Wine Preferences by Data Mining from
 Physicochemical Properties.” *Decision Support Systems* 47 (4): 547–53.
-https://doi.org/<https://doi.org/10.1016/j.dss.2009.05.016>.
+<https://doi.org/https://doi.org/10.1016/j.dss.2009.05.016>.
 
 </div>
 
-<div id="ref-docopt" class="csl-entry">
+<div id="ref-docopt">
 
 de Jonge, Edwin. 2020. *Docopt: Command-Line Interface Specification
 Language*. <https://CRAN.R-project.org/package=docopt>.
 
 </div>
 
-<div id="ref-arrow" class="csl-entry">
+<div id="ref-arrow">
 
 François, Romain, Jeroen Ooms, Neal Richardson, and Apache Arrow. 2020.
-*Arrow: Integration to ’apache’ ’arrow’*.
+*Arrow: Integration to ’Apache’ ’Arrow’*.
 <https://CRAN.R-project.org/package=arrow>.
 
 </div>
 
-<div id="ref-scikit-learn" class="csl-entry">
+<div id="ref-scikit-learn">
 
 Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O.
 Grisel, M. Blondel, et al. 2011. “Scikit-Learn: Machine Learning in
@@ -225,7 +233,7 @@ Python.” *Journal of Machine Learning Research* 12: 2825–30.
 
 </div>
 
-<div id="ref-R" class="csl-entry">
+<div id="ref-R">
 
 R Core Team. 2019. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
@@ -233,31 +241,31 @@ Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-reback2020pandas" class="csl-entry">
+<div id="ref-reback2020pandas">
 
 team, The pandas development. 2020. *Pandas-Dev/Pandas: Pandas* (version
 latest). Zenodo. <https://doi.org/10.5281/zenodo.3509134>.
 
 </div>
 
-<div id="ref-Python" class="csl-entry">
+<div id="ref-Python">
 
 Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
 Scotts Valley, CA: CreateSpace.
 
 </div>
 
-<div id="ref-feather" class="csl-entry">
+<div id="ref-feather">
 
-Wickham, Hadley. 2019. *Feather: R Bindings to the Feather ’API’*.
+Wickham, Hadley. 2019. *Feather: R Bindings to the Feather ’Api’*.
 <https://CRAN.R-project.org/package=feather>.
 
 </div>
 
-<div id="ref-knitr" class="csl-entry">
+<div id="ref-knitr">
 
 Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
-Generation in r*. <https://yihui.org/knitr/>.
+Generation in R*. <https://yihui.org/knitr/>.
 
 </div>
 
