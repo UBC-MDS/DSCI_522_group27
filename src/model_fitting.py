@@ -16,6 +16,9 @@ from sklearn.linear_model import Ridge
 from sklearn.dummy import DummyRegressor
 from sklearn.pipeline import make_pipeline, Pipeline
 from sklearn.compose import ColumnTransformer
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import r2_score
 import altair as alt
 
 
@@ -51,13 +54,12 @@ def initial_crossval(data_folder, results_folder):
     results_dict = {}
     models = {
         "dummyregressor": DummyRegressor(),
-        "ridge": Ridge(),
-        "randomforest": RandomForestRegressor(),
+        "ridge": Ridge(random_state=2020),
+        "randomforest": RandomForestRegressor(random_state=2020),
     }
 
     scoring = {
         "neg_mean_squared_error": "neg_mean_squared_error",
-        "neg_root_mean_square": "neg_root_mean_squared_error",
         "neg_mean_absolute_error": "neg_mean_absolute_error",
         "r2": "r2",
     }
@@ -65,7 +67,7 @@ def initial_crossval(data_folder, results_folder):
     for model_name, model in models.items():
         pipe = make_pipeline(model)
         scores = cross_validate(
-            pipe, X_train, y_train, return_train_score=True, scoring=scoring
+            pipe, X_train, y_train, return_train_score=True, scoring=scoring,
         )
         scores_df = pd.DataFrame(scores).mean()
         results_dict[model_name] = scores_df
@@ -96,7 +98,7 @@ def hyperparameter_tuning(data_folder, results_folder):
         raise ValueError("results_folder argument should be passed as str.")
 
     # Make the RandomizedSearchCV object
-    pipe_randomforest = make_pipeline(RandomForestRegressor())
+    pipe_randomforest = make_pipeline(RandomForestRegressor(random_state=2020))
     param_grid = {
         "randomforestregressor__n_estimators": [300, 600, 900],
         "randomforestregressor__max_depth": [10, 20, 30, 40],
@@ -107,7 +109,7 @@ def hyperparameter_tuning(data_folder, results_folder):
     random_search = RandomizedSearchCV(
         pipe_randomforest,
         param_distributions=param_grid,
-        n_iter=28,
+        n_iter=10,
         cv=3,
         n_jobs=-1,
         random_state=2020,
@@ -129,7 +131,6 @@ def hyperparameter_tuning(data_folder, results_folder):
     results_dict = {}
     scoring = {
         "neg_mean_squared_error": "neg_mean_squared_error",
-        "neg_root_mean_square": "neg_root_mean_squared_error",
         "neg_mean_absolute_error": "neg_mean_absolute_error",
         "r2": "r2",
     }
@@ -147,9 +148,23 @@ def hyperparameter_tuning(data_folder, results_folder):
         os.path.join(results_folder, "tuned_crossval_results.feather")
     )
 
-    print("Random Search best model r2 score: " + str(random_search.best_score_))
-    print("Train r2 score: " + str(random_search.score(X_train, y_train)))
-    print("Test r2 score: " + str(random_search.score(X_test, y_test)))
+    test_model = random_search.best_estimator_.fit(X_train, y_train)
+    y_pred = test_model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+
+    test_results_dict = {}
+    test_results_dict["Test Results"] = {
+        "neg_mean_squared_error": mse,
+        "neg_mean_absolute_error": mae,
+        "r2": r2,
+    }
+
+    test_results_df = pd.DataFrame(test_results_dict)
+    test_results_df.reset_index().to_feather(
+        os.path.join(results_folder, "tuned_test_results.feather")
+    )
 
     # Make feature importance figure:
     importance = random_search.best_estimator_.named_steps[
