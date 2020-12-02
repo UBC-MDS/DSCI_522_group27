@@ -71,7 +71,7 @@ kable(read_feather(path),
 We then examined the weight of the features present in our most effective random forest model and charted the effect that each feature had on the model (Figure 3). Alcohol was found to be the feature most highly associated with higher quality scores. Other features such as density, citric acid, and sulphates appear to have limited weight in our model.
 
 ```{r fig_3, echo=FALSE, fig.cap="Figure 3. Bar chart showing the target weights of different features of our RandomForestRegressor model.", out.width = '60%'}
-knitr::include_graphics("../results/feature_weight.png")
+knitr::include_graphics("../results/weights_figure.png")
 ```
 
 # Limitations & Future
