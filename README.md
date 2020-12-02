@@ -18,20 +18,13 @@ The final report can be found [here](https://htmlpreview.github.io/?https://gith
 
 To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands from the main directory of the project:
 ```
-# download data and save as csv
-python src/download_data.py data raw_data.csv
+make all
 
-# preprocess and split data
-python src/preprocess.py data raw_data.csv
+```
+To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
+```
+make clean
 
-# create exploratory data analysis figures
-python src/eda_figures.py data raw_data.csv results
-
-# fit, tune and test model
-python src/model_fitting.py data results
-
-# render final report
-Rscript -e "rmarkdown::render('doc/white_wine_predict_report.Rmd', output_format = 'github_document')"
 ```
 ## Dependencies
 
@@ -43,6 +36,15 @@ Rscript -e "rmarkdown::render('doc/white_wine_predict_report.Rmd', output_format
       - altair==4.1.0
       - numpy==1.19.4
       - sklearn==0.23.2
+      - altair_saver==0.5.0
+      
+  - R version 3.6 and R packages:
+      - knitr==1.30
+      - feather==0.3.5
+      - arrow==2.0.0
+      
+  - GNU make 4.2.1
+      
  
 # License 
 The materials on predicting white wine quality are licensed under the MIT License 
