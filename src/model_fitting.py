@@ -20,6 +20,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import r2_score
 import altair as alt
+import random
 
 
 def initial_crossval(data_folder, results_folder):
@@ -35,6 +36,8 @@ def initial_crossval(data_folder, results_folder):
     initial_crossval('data', 'results')
 
    """
+    random.seed(2020)
+
     if not type(data_folder) == str:
         raise ValueError("data_folder argument should be passed as str.")
     if not type(results_folder) == str:
@@ -93,6 +96,8 @@ def hyperparameter_tuning(data_folder, results_folder):
     hyperparameter_tuning('data', 'results')
 
    """
+    random.seed(2020)
+
     if not type(data_folder) == str:
         raise ValueError("data_folder argument should be passed as str.")
     if not type(results_folder) == str:
