@@ -115,7 +115,7 @@ def hyperparameter_tuning(data_folder, results_folder):
     random_search = RandomizedSearchCV(
         pipe_randomforest,
         param_distributions=param_grid,
-        n_iter=10,
+        n_iter=28,
         cv=3,
         n_jobs=-1,
         random_state=2020,
