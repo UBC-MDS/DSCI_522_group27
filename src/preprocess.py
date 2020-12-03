@@ -85,6 +85,12 @@ if __name__ == "__main__":
     args = docopt(__doc__)
     train_df, test_df = preprocess_data(args["<data_folder>"], args["<raw_data_file>"])
 
-    train_df.to_feather(os.path.join(args["<data_folder>"], "train_df.feather"))
-    test_df.to_feather(os.path.join(args["<data_folder>"], "test_df.feather"))
+    train_df.to_feather(
+        os.path.join(args["<data_folder>"], "train_df.feather"),
+        compression="uncompressed",
+    )
+    test_df.to_feather(
+        os.path.join(args["<data_folder>"], "test_df.feather"),
+        compression="uncompressed",
+    )
 
