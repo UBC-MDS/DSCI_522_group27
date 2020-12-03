@@ -46,7 +46,7 @@ knitr::include_graphics("../results/quality_distributions_figure.png")
 # [picture of our correlation plot]
 ```
 
-To determine how useful strong of an influence each feature has on the quality score we created a correlation plot using the altair package (built off of Vega-Lite) which shows how each of the different features is correlated with each other (Figure 2) [\@VanderPlas2018], [\@Satyanarayan2017]. This chart showed us that different features had varying degrees of influence on the quality score, with increased alcohol content and decreased density most heavily influencing the quality score. 
+To determine how useful strong of an influence each feature has on the quality score we created a correlation plot using the altair package (built off of Vega-Lite) which shows how each of the different features is correlated with each other (Figure 2) [\@VanderPlas2018], [\@Satyanarayan2017]. This chart showed us that different features had varying degrees of influence on the quality score, with increased alcohol content and decreased density most heavily influencing the quality score.
 
 ```{r fig_2, echo=FALSE, fig.cap="Figure 2. Correlation plot of the correlation between features in the white wine dataset.", out.width = '60%'}
 knitr::include_graphics("../results/corr_figure.png")
@@ -72,6 +72,14 @@ We then examined the weight of the features present in our most effective random
 
 ```{r fig_3, echo=FALSE, fig.cap="Figure 3. Bar chart showing the target weights of different features of our RandomForestRegressor model.", out.width = '60%'}
 knitr::include_graphics("../results/weights_figure.png")
+```
+
+After performing tuning on all of our hyperparamters we made another `RandomForestClassifier` model using the optimized values. This resulted in r2 score of 0.492 when run through our final test with a mean squared error of 0.390 (Table 3). These results are comparable to what we observed in our testing score where we observed very similar values.
+
+```{r table_3, echo=FALSE, out.width = '60%'}
+path <- "../results/tuned_test_results.feather"
+kable(read_feather(path),
+      caption="Table 3. Tuned test results of RandomForestClassifier.")
 ```
 
 # Limitations & Future
