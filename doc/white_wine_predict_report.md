@@ -69,12 +69,12 @@ The model was fit using all of the variables from the dataset.
 Hyperparameters `n_estimators` and `max_depth` were optimized via random
 search while all other hyperparameters used the default sklearn
 `RandomForestRegressor` values. The data was processed using the pandas
-package and EDA was performed using the pandas-profiling package
-\[@reback2020pandas\] \[@pandasprofiling2019\]. This document was
-compiled using an R document file with scripts run using the docopt
-package (R Core Team 2019), (de Jonge 2020). Tables were stored using
-feather files (with dependency on arrow) and displayed using knitr’s
-kable function (Wickham 2019), (François et al. 2020), (Xie 2020).
+package and EDA was performed using the pandas-profiling package (team
+2020) (Brugman 2019). This document was compiled using an R document
+file with scripts run using the docopt package (R Core Team 2019), (de
+Jonge 2020). Tables were stored using feather files (with dependency on
+arrow) and displayed using knitr’s kable function (Wickham 2019),
+(François et al. 2020), (Xie 2020).
 
 # **Results & Discussion**
 
@@ -97,9 +97,9 @@ datasets.
 To determine how useful strong of an influence each feature has on the
 quality score we created a correlation plot using the altair package
 (built off of Vega-Lite) which shows how each of the different features
-is correlated with each other (Figure 2) \[@VanderPlas2018\],
-\[@Satyanarayan2017\]. This chart showed us that different features had
-varying degrees of influence on the quality score, with increased
+is correlated with each other (Figure 2) (VanderPlas et al. 2018),
+(Satyanarayan et al. 2017). This chart showed us that different features
+had varying degrees of influence on the quality score, with increased
 alcohol content and decreased density most heavily influencing the
 quality score.
 
@@ -205,6 +205,13 @@ grape used in the wine) due for the sake of privacy protection.
 
 <div id="refs" class="references hanging-indent">
 
+<div id="ref-pandasprofiling2019">
+
+Brugman, Simon. 2019. “pandas-profiling: Exploratory Data Analysis for
+Python.” <https://github.com/pandas-profiling/pandas-profiling>.
+
+</div>
+
 <div id="ref-CORTEZ2009547">
 
 Cortez, Paulo, Antonio Cerdeira, Fernando Almeida, Telmo Matos, and Jose
@@ -242,6 +249,31 @@ Python.” *Journal of Machine Learning Research* 12: 2825–30.
 R Core Team. 2019. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 <https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-Satyanarayan2017">
+
+Satyanarayan, Arvind, Dominik Moritz, Kanit Wongsuphasawat, and Jeffrey
+Heer. 2017. “Vega-Lite: A Grammar of Interactive Graphics.” *IEEE
+Transactions on Visualization and Computer Graphics* 23 (1): 341–50.
+
+</div>
+
+<div id="ref-reback2020pandas">
+
+team, The pandas development. 2020. *Pandas-Dev/Pandas: Pandas* (version
+latest). Zenodo. <https://doi.org/10.5281/zenodo.3509134>.
+
+</div>
+
+<div id="ref-VanderPlas2018">
+
+VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
+Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
+Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
+Visualizations for Python.” *Journal of Open Source Software* 3 (32):
+1057. <https://doi.org/10.21105/joss.01057>.
 
 </div>
 
