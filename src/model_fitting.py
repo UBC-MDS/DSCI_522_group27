@@ -75,7 +75,8 @@ def initial_crossval(data_folder, results_folder):
     # Save results dataframe as feather
     initial_crossval_results = pd.DataFrame(results_dict)
     initial_crossval_results.reset_index().to_feather(
-        os.path.join(results_folder, "initial_crossval_results.feather")
+        os.path.join(results_folder, "initial_crossval_results.feather",),
+        compression="uncompressed",
     )
 
 
@@ -145,7 +146,8 @@ def hyperparameter_tuning(data_folder, results_folder):
     results_dict["Tuned Model"] = scores_df
     tuned_crossval_results = pd.DataFrame(results_dict)
     tuned_crossval_results.reset_index().to_feather(
-        os.path.join(results_folder, "tuned_crossval_results.feather")
+        os.path.join(results_folder, "tuned_crossval_results.feather"),
+        compression="uncompressed",
     )
 
     test_model = random_search.best_estimator_.fit(X_train, y_train)
@@ -156,14 +158,15 @@ def hyperparameter_tuning(data_folder, results_folder):
 
     test_results_dict = {}
     test_results_dict["Test Results"] = {
-        "neg_mean_squared_error": mse,
-        "neg_mean_absolute_error": mae,
+        "neg_mean_squared_error": -1 * mse,
+        "neg_mean_absolute_error": -1 * mae,
         "r2": r2,
     }
 
     test_results_df = pd.DataFrame(test_results_dict)
     test_results_df.reset_index().to_feather(
-        os.path.join(results_folder, "tuned_test_results.feather")
+        os.path.join(results_folder, "tuned_test_results.feather"),
+        compression="uncompressed",
     )
 
     # Make feature importance figure:
