@@ -74,7 +74,9 @@ package and EDA was performed using the pandas-profiling package (team
 file with scripts run using the docopt package (R Core Team 2019), (de
 Jonge 2020). Tables were stored using feather files (with dependency on
 arrow) and displayed using knitr’s kable function (Wickham 2019),
-(François et al. 2020), (Xie 2020).
+(François et al. 2020), (Xie 2020). This document was compiled using
+rmarkdown (<span class="citeproc-not-found"
+data-reference-id="rmarkdown">**???**</span>).
 
 # **Results & Discussion**
 
@@ -122,8 +124,8 @@ those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0009299 |  0.0033011 |    1.2252835 |
-| score\_time                       |      0.0008948 |  0.0023782 |    0.0186646 |
+| fit\_time                         |      0.0008092 |  0.0031037 |    1.1876860 |
+| score\_time                       |      0.0007594 |  0.0024968 |    0.0181448 |
 | test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
 | train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
 | test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
@@ -137,18 +139,18 @@ We found that a random forest classifier and, after performing random
 search hyperparameter optimization, that hyperparameters `n_estimators`
 and `max_depth` set to values of 300 and 10 respectively produced the
 best model for our dataset. This resulted in us producing a model with a
-training score of 0.929 and a testing score of 0.505 (Table 2).
+training score of 0.849 and a testing score of 0.483 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   7.5070681 |
-| score\_time                       |   0.1024869 |
-| test\_neg\_mean\_squared\_error   |  -0.3905119 |
-| train\_neg\_mean\_squared\_error  |  -0.0558802 |
-| test\_neg\_mean\_absolute\_error  |  -0.4569208 |
-| train\_neg\_mean\_absolute\_error |  -0.1736196 |
-| test\_r2                          |   0.5053642 |
-| train\_r2                         |   0.9292326 |
+| fit\_time                         |   3.3141072 |
+| score\_time                       |   0.0455753 |
+| test\_neg\_mean\_squared\_error   |  -0.4080563 |
+| train\_neg\_mean\_squared\_error  |  -0.1192033 |
+| test\_neg\_mean\_absolute\_error  |  -0.4787783 |
+| train\_neg\_mean\_absolute\_error |  -0.2581611 |
+| test\_r2                          |   0.4830687 |
+| train\_r2                         |   0.8490405 |
 
 Table 2. Table of cross-validation results of the tuned model
 
@@ -171,15 +173,15 @@ our RandomForestRegressor model.
 
 After performing tuning on all of our hyperparamters we made another
 `RandomForestClassifier` model using the optimized values. This resulted
-in r2 score of 0.492 when run through our final test with a mean squared
-error of 0.390 (Table 3). These results are comparable to what we
+in r2 score of 0.475 when run through our final test with a mean squared
+error of -0.403 (Table 3). These results are comparable to what we
 observed in our testing score where we observed very similar values.
 
 | index                      | Test Results |
 |:---------------------------|-------------:|
-| neg\_mean\_absolute\_error |    0.4434123 |
-| neg\_mean\_squared\_error  |    0.3896619 |
-| r2                         |    0.4924049 |
+| neg\_mean\_absolute\_error |   -0.4669610 |
+| neg\_mean\_squared\_error  |   -0.4026318 |
+| r2                         |    0.4755096 |
 
 Table 3. Tuned test results of RandomForestClassifier.
 
