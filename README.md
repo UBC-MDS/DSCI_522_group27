@@ -30,7 +30,7 @@ make clean
 
   - Python 3.7 and Python packages:
       - docopt==0.6.2
-      - pandas==0.24.2
+      - pandas==1.1.4
       - pandas-profiling==2.9.0
       - matplotlib==3.3.3
       - altair==4.1.0
@@ -39,6 +39,7 @@ make clean
       - altair_saver==0.5.0
       
   - R version 3.6 and R packages:
+      - rmarkdown==2.5
       - knitr==1.30
       - feather==0.3.5
       - arrow==2.0.0
