@@ -125,8 +125,8 @@ those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0008993 |  0.0028860 |    1.1873143 |
-| score\_time                       |      0.0007512 |  0.0024699 |    0.0173934 |
+| fit\_time                         |      0.0009881 |  0.0032907 |    1.1908167 |
+| score\_time                       |      0.0007844 |  0.0026820 |    0.0180437 |
 | test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
 | train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
 | test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
@@ -140,18 +140,18 @@ We found that a random forest classifier and, after performing random
 search hyperparameter optimization, that hyperparameters `n_estimators`
 and `max_depth` set to values of 300 and 10 respectively produced the
 best model for our dataset. This resulted in us producing a model with a
-training score of 0.849 and a testing score of 0.483 (Table 2).
+training score of 0.929 and a testing score of 0.505 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   3.2796247 |
-| score\_time                       |   0.0438829 |
-| test\_neg\_mean\_squared\_error   |  -0.4080563 |
-| train\_neg\_mean\_squared\_error  |  -0.1192033 |
-| test\_neg\_mean\_absolute\_error  |  -0.4787783 |
-| train\_neg\_mean\_absolute\_error |  -0.2581611 |
-| test\_r2                          |   0.4830687 |
-| train\_r2                         |   0.8490405 |
+| fit\_time                         |   7.1390453 |
+| score\_time                       |   0.0962951 |
+| test\_neg\_mean\_squared\_error   |  -0.3905119 |
+| train\_neg\_mean\_squared\_error  |  -0.0558802 |
+| test\_neg\_mean\_absolute\_error  |  -0.4569208 |
+| train\_neg\_mean\_absolute\_error |  -0.1736196 |
+| test\_r2                          |   0.5053642 |
+| train\_r2                         |   0.9292326 |
 
 Table 2. Table of cross-validation results of the tuned model
 
@@ -181,29 +181,28 @@ values.
 
 | index                      | Test Results |
 |:---------------------------|-------------:|
-| neg\_mean\_absolute\_error |   -0.4669610 |
-| neg\_mean\_squared\_error  |   -0.4026318 |
-| r2                         |    0.4755096 |
+| neg\_mean\_absolute\_error |   -0.4434123 |
+| neg\_mean\_squared\_error  |   -0.3896619 |
+| r2                         |    0.4924049 |
 
 Table 3. Tuned test results of RandomForestClassifier.
 
 # Limitations & Future
 
 Some potential limitations of our model thus far are that we have only
-tested a handful of different regression methods and only performed
-light hyperparameter optimization thus far. There likely exists
-combinations which will lead to better scoring in our model. If provided
-with more time we would be able to improve our analysis by looking for
-these potentially better model/hyperparameter combinations. SVM might be
-an effective model to test for this specific type of problem as
-mentioned in the paper by Cortez et al. (Cortez et al. 2009). Another
-way to improve our model would be to implement a form of feature
-selection (such as RFECV) given that we are still including all features
-and that many of them seem to have little influence on the scoring of
-our model. We could also potentially find a larger dataset (i.e. with
-wine from around the world) or with more features since the one we are
-currently working with has a limited number of features (i.e. type of
-grape used in the wine) due for the sake of privacy protection.
+tested a handful of different regression methods and only have performed
+light hyperparameter optimization. There likely exists combinations of
+models and hyperparamters which will lead to better scoring in our
+model. SVM might be an effective model to test for our problem as it was
+specifically mentioned in the paper by Cortez et al. (Cortez et al.
+2009). Another way to improve our model would be to implement a form of
+feature selection (such as RFECV) given that we are still including all
+features and that many of them seem to have little influence on the
+scoring of our model. We could also potentially find a larger dataset
+(i.e. with wine from around the world) or with more features since the
+one we are currently working with has a limited number of features
+(i.e. type of grape used in the wine) due for the sake of privacy
+protection.
 
 # References
 
