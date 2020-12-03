@@ -3,7 +3,7 @@
 # date: 2020-12-05
 
 
-all: results/corr_figure.png results/quality_distributions_figure.png results/weights_figure.png results/initial_crossval_results.feather results/tuned_crossval_results.feather doc/white_wine_predict_report.md doc/white_wine_predict_report.html
+all: results/corr_figure.png results/quality_distributions_figure.png results/weights_figure.png results/initial_crossval_results.feather results/tuned_crossval_results.feather results/tuned_test_results.feather doc/white_wine_predict_report.md doc/white_wine_predict_report.html
   
 # download data and save as csv
 data/raw_data.csv: src/download_data.py
@@ -18,7 +18,7 @@ results/corr_figure.png results/quality_distributions_figure.png: data/test_df.f
 	python src/eda_figures.py data raw_data.csv results
 
 # fit, tune and test model
-results/weights_figure.png results/initial_crossval_results.feather results/tuned_crossval_results.feather: data/test_df.feather data/train_df.feather 
+results/weights_figure.png results/initial_crossval_results.feather results/tuned_crossval_results.feather results/tuned_test_results.feather : data/test_df.feather data/train_df.feather 
 	python src/model_fitting.py data results
 
 # render final report
