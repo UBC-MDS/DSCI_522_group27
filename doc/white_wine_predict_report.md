@@ -125,8 +125,8 @@ those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0013662 |  0.0040298 |    1.3331765 |
-| score\_time                       |      0.0010121 |  0.0029734 |    0.0215766 |
+| fit\_time                         |      0.0008993 |  0.0028860 |    1.1873143 |
+| score\_time                       |      0.0007512 |  0.0024699 |    0.0173934 |
 | test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
 | train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
 | test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
@@ -144,8 +144,8 @@ training score of 0.849 and a testing score of 0.483 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   4.3652596 |
-| score\_time                       |   0.0572210 |
+| fit\_time                         |   3.2796247 |
+| score\_time                       |   0.0438829 |
 | test\_neg\_mean\_squared\_error   |  -0.4080563 |
 | train\_neg\_mean\_squared\_error  |  -0.1192033 |
 | test\_neg\_mean\_absolute\_error  |  -0.4787783 |
@@ -174,7 +174,7 @@ our RandomForestRegressor model.
 
 After performing tuning on all of our hyperparamters we made another
 `RandomForestClassifier` model using the optimized values. This resulted
-in r2 score of 0.492 when run through our final test with a negative
+in r2 score of 0.476 when run through our final test with a negative
 mean squared error of -0.403 (Table 3). These results are comparable to
 what we observed in our testing score where we observed very similar
 values.
@@ -196,7 +196,7 @@ combinations which will lead to better scoring in our model. If provided
 with more time we would be able to improve our analysis by looking for
 these potentially better model/hyperparameter combinations. SVM might be
 an effective model to test for this specific type of problem as
-mentioned in the paper by Cortez et al. (Cortez et al. 2009). Another
+mentioned in the paper by Cortez et al. (Cortez et al. 2009). Another
 way to improve our model would be to implement a form of feature
 selection (such as RFECV) given that we are still including all features
 and that many of them seem to have little influence on the scoring of
@@ -207,42 +207,41 @@ grape used in the wine) due for the sake of privacy protection.
 
 # References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references hanging-indent">
 
-<div id="ref-rmarkdown" class="csl-entry">
+<div id="ref-rmarkdown">
 
 Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin
 Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and
-Richard Iannone. 2020. *Rmarkdown: Dynamic Documents for r*.
+Richard Iannone. 2020. *Rmarkdown: Dynamic Documents for R*.
 <https://github.com/rstudio/rmarkdown>.
 
 </div>
 
-<div id="ref-pandasprofiling2019" class="csl-entry">
+<div id="ref-pandasprofiling2019">
 
-Brugman, Simon. 2019. “<span class="nocase">pandas-profiling:
-Exploratory Data Analysis for Python</span>.”
-<https://github.com/pandas-profiling/pandas-profiling>.
+Brugman, Simon. 2019. “pandas-profiling: Exploratory Data Analysis for
+Python.” <https://github.com/pandas-profiling/pandas-profiling>.
 
 </div>
 
-<div id="ref-CORTEZ2009547" class="csl-entry">
+<div id="ref-CORTEZ2009547">
 
 Cortez, Paulo, Antonio Cerdeira, Fernando Almeida, Telmo Matos, and Jose
 Reis. 2009. “Modeling Wine Preferences by Data Mining from
 Physicochemical Properties.” *Decision Support Systems* 47 (4): 547–53.
-https://doi.org/<https://doi.org/10.1016/j.dss.2009.05.016>.
+<https://doi.org/https://doi.org/10.1016/j.dss.2009.05.016>.
 
 </div>
 
-<div id="ref-docopt" class="csl-entry">
+<div id="ref-docopt">
 
 de Jonge, Edwin. 2020. *Docopt: Command-Line Interface Specification
 Language*. <https://CRAN.R-project.org/package=docopt>.
 
 </div>
 
-<div id="ref-arrow" class="csl-entry">
+<div id="ref-arrow">
 
 François, Romain, Jeroen Ooms, Neal Richardson, and Apache Arrow. 2020.
 *Arrow: Integration to ’Apache’ ’Arrow’*.
@@ -250,7 +249,7 @@ François, Romain, Jeroen Ooms, Neal Richardson, and Apache Arrow. 2020.
 
 </div>
 
-<div id="ref-scikit-learn" class="csl-entry">
+<div id="ref-scikit-learn">
 
 Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O.
 Grisel, M. Blondel, et al. 2011. “Scikit-Learn: Machine Learning in
@@ -258,7 +257,7 @@ Python.” *Journal of Machine Learning Research* 12: 2825–30.
 
 </div>
 
-<div id="ref-R" class="csl-entry">
+<div id="ref-R">
 
 R Core Team. 2019. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
@@ -266,7 +265,7 @@ Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-Satyanarayan2017" class="csl-entry">
+<div id="ref-Satyanarayan2017">
 
 Satyanarayan, Arvind, Dominik Moritz, Kanit Wongsuphasawat, and Jeffrey
 Heer. 2017. “Vega-Lite: A Grammar of Interactive Graphics.” *IEEE
@@ -274,21 +273,14 @@ Transactions on Visualization and Computer Graphics* 23 (1): 341–50.
 
 </div>
 
-<div id="ref-reback2020pandas" class="csl-entry">
+<div id="ref-reback2020pandas">
 
 team, The pandas development. 2020. *Pandas-Dev/Pandas: Pandas* (version
 latest). Zenodo. <https://doi.org/10.5281/zenodo.3509134>.
 
 </div>
 
-<div id="ref-Python" class="csl-entry">
-
-Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
-Scotts Valley, CA: CreateSpace.
-
-</div>
-
-<div id="ref-VanderPlas2018" class="csl-entry">
+<div id="ref-VanderPlas2018">
 
 VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
@@ -298,17 +290,24 @@ Visualizations for Python.” *Journal of Open Source Software* 3 (32):
 
 </div>
 
-<div id="ref-feather" class="csl-entry">
+<div id="ref-Python">
 
-Wickham, Hadley. 2019. *Feather: R Bindings to the Feather ’API’*.
+Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
+Scotts Valley, CA: CreateSpace.
+
+</div>
+
+<div id="ref-feather">
+
+Wickham, Hadley. 2019. *Feather: R Bindings to the Feather ’Api’*.
 <https://CRAN.R-project.org/package=feather>.
 
 </div>
 
-<div id="ref-knitr" class="csl-entry">
+<div id="ref-knitr">
 
 Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
-Generation in r*. <https://yihui.org/knitr/>.
+Generation in R*. <https://yihui.org/knitr/>.
 
 </div>
 
