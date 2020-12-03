@@ -60,7 +60,7 @@ kable(read_feather(path),
       caption="Table 1. Table of cross-validation results for each tested model")
 ```
 
-We found that a random forest classifier and, after performing random search hyperparameter optimization, that hyperparameters `n_estimators` and `max_depth` set to values of 300 and 10 respectively produced the best model for our dataset. This resulted in us producing a model with a training score of 0.849 and a testing score of 0.483 (Table 2).
+We found that a random forest classifier and, after performing random search hyperparameter optimization, that hyperparameters `n_estimators` and `max_depth` set to values of 300 and 10 respectively produced the best model for our dataset. This resulted in us producing a model with a training score of 0.929 and a testing score of 0.505 (Table 2).
 
 ```{r table_2, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_crossval_results.feather"
@@ -84,6 +84,6 @@ kable(read_feather(path),
 
 # Limitations & Future
 
-Some potential limitations of our model thus far are that we have only tested a handful of different regression methods and only performed light hyperparameter optimization thus far. There likely exists combinations which will lead to better scoring in our model. If provided with more time we would be able to improve our analysis by looking for these potentially better model/hyperparameter combinations. SVM might be an effective model to test for this specific type of problem as mentioned in the paper by Cortez et al. [@CORTEZ2009547]. Another way to improve our model would be to implement a form of feature selection (such as RFECV) given that we are still including all features and that many of them seem to have little influence on the scoring of our model. We could also potentially find a larger dataset (i.e. with wine from around the world) or with more features since the one we are currently working with has a limited number of features (i.e. type of grape used in the wine) due for the sake of privacy protection.
+Some potential limitations of our model thus far are that we have only tested a handful of different regression methods and only have performed light hyperparameter optimization. There likely exists combinations of models and hyperparamters which will lead to better scoring in our model. SVM might be an effective model to test for our problem as it was specifically mentioned in the paper by Cortez et al. [@CORTEZ2009547]. Another way to improve our model would be to implement a form of feature selection (such as RFECV) given that we are still including all features and that many of them seem to have little influence on the scoring of our model. We could also potentially find a larger dataset (i.e. with wine from around the world) or with more features since the one we are currently working with has a limited number of features (i.e. type of grape used in the wine) due for the sake of privacy protection.
 
 # References
