@@ -140,7 +140,7 @@ We found that a random forest classifier and, after performing random
 search hyperparameter optimization, that hyperparameters `n_estimators`
 and `max_depth` set to values of 300 and 10 respectively produced the
 best model for our dataset. This resulted in us producing a model with a
-training score of 0.929 and a testing score of 0.505 (Table 2).
+training score of 0.849 and a testing score of 0.483 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
