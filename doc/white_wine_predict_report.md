@@ -2,8 +2,7 @@ Predicting quality of white wine from various characteristics
 ================
 DSCI 522 group 27
 
-**Summary**
-===========
+# **Summary**
 
 Here we tried different models such as dummy regressor, ridge and random
 forest regressor to predict the white wine quality. When we carried out
@@ -18,8 +17,7 @@ metric or tune other hyperparameters to get a better result. Moreover,
 we can also change the prediction task from a regression problem to a
 classification problem in order to find a better prediction.
 
-**Introduction**
-================
+# **Introduction**
 
 The wine market occupies a significant position among consumers. For
 manufacturers, the quality of alcohol significantly affects the sales of
@@ -38,11 +36,9 @@ question is crucial since we want to support the wine tasting
 evaluations of oenologists and contribute to wine production (Cortez et
 al. 2009).
 
-**Methods**
-===========
+# **Methods**
 
-**Data**
---------
+## **Data**
 
 The dataset that we used came from the University of California Irvine
 (UCI) machine learning repository and was collected by Paulo Cortez,
@@ -58,8 +54,7 @@ No additional features or specific branding of each wine is available in
 the dataset for privacy purposes. Each row in the dataset represents a
 single wine which was tested and scored based on sensory data.
 
-**Analysis**
-------------
+## **Analysis**
 
 A classification model was built with python scripts using the sk-learn
 `RandomForestRegressor` algorithm and allowed us to predict a sensory
@@ -81,8 +76,7 @@ package (R Core Team 2019), (de Jonge 2020). Tables were stored using
 feather files (with dependency on arrow) and displayed using knitr’s
 kable function (Wickham 2019), (François et al. 2020), (Xie 2020).
 
-**Results & Discussion**
-========================
+# **Results & Discussion**
 
 After splitting our dataset into a training set and a test set we
 plotted the distribution of the quality scores for each wine (Figure 1).
@@ -128,16 +122,14 @@ those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0022741 |  0.0499722 |    3.7706888 |
-| score\_time                       |      0.0034262 |  0.0097569 |    0.0435739 |
-| test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3962930 |
-| train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0556099 |
-| test\_neg\_root\_mean\_square     |     -0.8884729 | -0.7610260 |   -0.6291717 |
-| train\_neg\_root\_mean\_square    |     -0.8886236 | -0.7541385 |   -0.2358139 |
-| test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4604105 |
-| train\_neg\_mean\_absolute\_error |     -0.6765906 | -0.5871736 |   -0.1709740 |
-| test\_r2                          |     -0.0007601 |  0.2655188 |    0.4979000 |
-| train\_r2                         |      0.0000000 |  0.2797630 |    0.9295758 |
+| fit\_time                         |      0.0009299 |  0.0033011 |    1.2252835 |
+| score\_time                       |      0.0008948 |  0.0023782 |    0.0186646 |
+| test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
+| train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
+| test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
+| train\_neg\_mean\_absolute\_error |     -0.6765906 | -0.5871736 |   -0.1705949 |
+| test\_r2                          |     -0.0007601 |  0.2655188 |    0.5029517 |
+| train\_r2                         |      0.0000000 |  0.2797630 |    0.9298684 |
 
 Table 1. Table of cross-validation results for each tested model
 
@@ -149,16 +141,14 @@ training score of 0.929 and a testing score of 0.505 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   7.8638836 |
-| score\_time                       |   0.0961501 |
-| test\_neg\_mean\_squared\_error   |  -0.3915798 |
-| train\_neg\_mean\_squared\_error  |  -0.0539640 |
-| test\_neg\_root\_mean\_square     |  -0.6253666 |
-| train\_neg\_root\_mean\_square    |  -0.2322998 |
-| test\_neg\_mean\_absolute\_error  |  -0.4559461 |
-| train\_neg\_mean\_absolute\_error |  -0.1692068 |
-| test\_r2                          |   0.5039385 |
-| train\_r2                         |   0.9316578 |
+| fit\_time                         |   7.5070681 |
+| score\_time                       |   0.1024869 |
+| test\_neg\_mean\_squared\_error   |  -0.3905119 |
+| train\_neg\_mean\_squared\_error  |  -0.0558802 |
+| test\_neg\_mean\_absolute\_error  |  -0.4569208 |
+| train\_neg\_mean\_absolute\_error |  -0.1736196 |
+| test\_r2                          |   0.5053642 |
+| train\_r2                         |   0.9292326 |
 
 Table 2. Table of cross-validation results of the tuned model
 
@@ -179,8 +169,21 @@ our RandomForestRegressor model.
 
 </div>
 
-Limitations & Future
-====================
+After performing tuning on all of our hyperparamters we made another
+`RandomForestClassifier` model using the optimized values. This resulted
+in r2 score of 0.492 when run through our final test with a mean squared
+error of 0.390 (Table 3). These results are comparable to what we
+observed in our testing score where we observed very similar values.
+
+| index                      | Test Results |
+|:---------------------------|-------------:|
+| neg\_mean\_absolute\_error |    0.4434123 |
+| neg\_mean\_squared\_error  |    0.3896619 |
+| r2                         |    0.4924049 |
+
+Table 3. Tuned test results of RandomForestClassifier.
+
+# Limitations & Future
 
 Some potential limitations of our model thus far are that we have only
 tested a handful of different regression methods and only performed
@@ -198,8 +201,7 @@ wine from around the world) or with more features since the one we are
 currently working with has a limited number of features (i.e. type of
 grape used in the wine) due for the sake of privacy protection.
 
-References
-==========
+# References
 
 <div id="refs" class="references hanging-indent">
 
