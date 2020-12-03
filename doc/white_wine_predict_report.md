@@ -10,7 +10,7 @@ the cross-validation for these three models, we chose random forest
 regressor as our best performance model by comparing different metrics.
 We tried hyperparameter optimization with random forest regressor to get
 the r2 score of 0.492 as our final test score with a negative mean
-squared error of -0.403, which seems to be not reasonable here (Note
+squared error of -0.443, which seems to be not reasonable here (Note
 that we have imbalanced data). Therefore, random forest regressor may
 not be an appropriate model to use here. However, we can find other
 complex models to improve our test scores, or we can carry out a
@@ -125,8 +125,8 @@ those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0009881 |  0.0032907 |    1.1908167 |
-| score\_time                       |      0.0007844 |  0.0026820 |    0.0180437 |
+| fit\_time                         |      0.0021821 |  0.0069011 |    2.2330060 |
+| score\_time                       |      0.0022649 |  0.0042872 |    0.0359098 |
 | test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
 | train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
 | test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
@@ -144,8 +144,8 @@ training score of 0.929 and a testing score of 0.505 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   7.1390453 |
-| score\_time                       |   0.0962951 |
+| fit\_time                         |  10.5366558 |
+| score\_time                       |   0.1296017 |
 | test\_neg\_mean\_squared\_error   |  -0.3905119 |
 | train\_neg\_mean\_squared\_error  |  -0.0558802 |
 | test\_neg\_mean\_absolute\_error  |  -0.4569208 |
@@ -174,8 +174,8 @@ our RandomForestRegressor model.
 
 After performing tuning on all of our hyperparamters we made another
 `RandomForestClassifier` model using the optimized values. This resulted
-in r2 score of 0.476 when run through our final test with a negative
-mean squared error of -0.403 (Table 3). These results are comparable to
+in r2 score of 0.492 when run through our final test with a negative
+mean squared error of -0.443 (Table 3). These results are comparable to
 what we observed in our testing score where we observed very similar
 values.
 
@@ -194,7 +194,7 @@ tested a handful of different regression methods and only have performed
 light hyperparameter optimization. There likely exists combinations of
 models and hyperparamters which will lead to better scoring in our
 model. SVM might be an effective model to test for our problem as it was
-specifically mentioned in the paper by Cortez et al. (Cortez et al.
+specifically mentioned in the paper by Cortez et al. (Cortez et al.
 2009). Another way to improve our model would be to implement a form of
 feature selection (such as RFECV) given that we are still including all
 features and that many of them seem to have little influence on the
@@ -206,41 +206,42 @@ protection.
 
 # References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-rmarkdown">
+<div id="ref-rmarkdown" class="csl-entry">
 
 Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin
 Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and
-Richard Iannone. 2020. *Rmarkdown: Dynamic Documents for R*.
+Richard Iannone. 2020. *Rmarkdown: Dynamic Documents for r*.
 <https://github.com/rstudio/rmarkdown>.
 
 </div>
 
-<div id="ref-pandasprofiling2019">
+<div id="ref-pandasprofiling2019" class="csl-entry">
 
-Brugman, Simon. 2019. “pandas-profiling: Exploratory Data Analysis for
-Python.” <https://github.com/pandas-profiling/pandas-profiling>.
+Brugman, Simon. 2019. “<span class="nocase">pandas-profiling:
+Exploratory Data Analysis for Python</span>.”
+<https://github.com/pandas-profiling/pandas-profiling>.
 
 </div>
 
-<div id="ref-CORTEZ2009547">
+<div id="ref-CORTEZ2009547" class="csl-entry">
 
 Cortez, Paulo, Antonio Cerdeira, Fernando Almeida, Telmo Matos, and Jose
 Reis. 2009. “Modeling Wine Preferences by Data Mining from
 Physicochemical Properties.” *Decision Support Systems* 47 (4): 547–53.
-<https://doi.org/https://doi.org/10.1016/j.dss.2009.05.016>.
+https://doi.org/<https://doi.org/10.1016/j.dss.2009.05.016>.
 
 </div>
 
-<div id="ref-docopt">
+<div id="ref-docopt" class="csl-entry">
 
 de Jonge, Edwin. 2020. *Docopt: Command-Line Interface Specification
 Language*. <https://CRAN.R-project.org/package=docopt>.
 
 </div>
 
-<div id="ref-arrow">
+<div id="ref-arrow" class="csl-entry">
 
 François, Romain, Jeroen Ooms, Neal Richardson, and Apache Arrow. 2020.
 *Arrow: Integration to ’Apache’ ’Arrow’*.
@@ -248,7 +249,7 @@ François, Romain, Jeroen Ooms, Neal Richardson, and Apache Arrow. 2020.
 
 </div>
 
-<div id="ref-scikit-learn">
+<div id="ref-scikit-learn" class="csl-entry">
 
 Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O.
 Grisel, M. Blondel, et al. 2011. “Scikit-Learn: Machine Learning in
@@ -256,7 +257,7 @@ Python.” *Journal of Machine Learning Research* 12: 2825–30.
 
 </div>
 
-<div id="ref-R">
+<div id="ref-R" class="csl-entry">
 
 R Core Team. 2019. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
@@ -264,7 +265,7 @@ Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-Satyanarayan2017">
+<div id="ref-Satyanarayan2017" class="csl-entry">
 
 Satyanarayan, Arvind, Dominik Moritz, Kanit Wongsuphasawat, and Jeffrey
 Heer. 2017. “Vega-Lite: A Grammar of Interactive Graphics.” *IEEE
@@ -272,14 +273,21 @@ Transactions on Visualization and Computer Graphics* 23 (1): 341–50.
 
 </div>
 
-<div id="ref-reback2020pandas">
+<div id="ref-reback2020pandas" class="csl-entry">
 
 team, The pandas development. 2020. *Pandas-Dev/Pandas: Pandas* (version
 latest). Zenodo. <https://doi.org/10.5281/zenodo.3509134>.
 
 </div>
 
-<div id="ref-VanderPlas2018">
+<div id="ref-Python" class="csl-entry">
+
+Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
+Scotts Valley, CA: CreateSpace.
+
+</div>
+
+<div id="ref-VanderPlas2018" class="csl-entry">
 
 VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
@@ -289,24 +297,17 @@ Visualizations for Python.” *Journal of Open Source Software* 3 (32):
 
 </div>
 
-<div id="ref-Python">
+<div id="ref-feather" class="csl-entry">
 
-Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
-Scotts Valley, CA: CreateSpace.
-
-</div>
-
-<div id="ref-feather">
-
-Wickham, Hadley. 2019. *Feather: R Bindings to the Feather ’Api’*.
+Wickham, Hadley. 2019. *Feather: R Bindings to the Feather ’API’*.
 <https://CRAN.R-project.org/package=feather>.
 
 </div>
 
-<div id="ref-knitr">
+<div id="ref-knitr" class="csl-entry">
 
 Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
-Generation in R*. <https://yihui.org/knitr/>.
+Generation in r*. <https://yihui.org/knitr/>.
 
 </div>
 
