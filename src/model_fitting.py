@@ -161,8 +161,6 @@ def hyperparameter_tuning(data_folder, results_folder):
     mae = mean_absolute_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
 
-    print(r2)
-
     test_results_dict = {}
     test_results_dict["Test Results"] = {
         "neg_mean_squared_error": -1 * mse,
