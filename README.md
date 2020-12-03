@@ -35,8 +35,9 @@ make clean
       - matplotlib==3.3.3
       - altair==4.1.0
       - numpy==1.19.4
-      - sklearn==0.23.2
+      - scikit-learn==0.23.2
       - altair_saver==0.5.0
+      - pyarrow==2.0.0
       
   - R version 3.6 and R packages:
       - rmarkdown==2.5
