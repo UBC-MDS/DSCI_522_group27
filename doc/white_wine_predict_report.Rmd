@@ -19,7 +19,7 @@ df <- read_feather(path)
 
 # **Summary**
 
-Here we tried different models such as dummy regressor, ridge and random forest regressor to predict the white wine quality. When we carried out the cross-validation for these three models, we chose random forest regressor as our best performance model by comparing different metrics. We tried hyperparameter optimization with random forest regressor to get the r2 score of 0.492 as our final test score with a negative mean squared error of -0.443, which seems to be not reasonable here (Note that we have imbalanced data). Therefore, random forest regressor may not be an appropriate model to use here. However, we can find other complex models to improve our test scores, or we can carry out a different metric or tune other hyperparameters to get a better result. Moreover, we can also change the prediction task from a regression problem to a classification problem in order to find a better prediction.
+Here we tried different models such as dummy regressor, ridge and random forest regressor to predict the white wine quality. When we carried out the cross-validation for these three models, we chose random forest regressor as our best performance model by comparing different metrics. We tried hyperparameter optimization with random forest regressor to get the r2 score of 0.492 as our final test score with a negative mean absolute error of -0.443, which seems to be not reasonable here (Note that we have imbalanced data). Therefore, random forest regressor may not be an appropriate model to use here. However, we can find other complex models to improve our test scores, or we can carry out a different metric or tune other hyperparameters to get a better result. Moreover, we can also change the prediction task from a regression problem to a classification problem in order to find a better prediction.
 
 # **Introduction**
 
@@ -74,7 +74,7 @@ We then examined the weight of the features present in our most effective random
 knitr::include_graphics("../results/weights_figure.png")
 ```
 
-After performing tuning on all of our hyperparamters we made another `RandomForestClassifier` model using the optimized values. This resulted in r2 score of 0.492 when run through our final test with a negative mean squared error of -0.443 (Table 3). These results are comparable to what we observed in our testing score where we observed very similar values.
+After performing tuning on all of our hyperparamters we made another `RandomForestClassifier` model using the optimized values. This resulted in r2 score of 0.492 when run through our final test with a negative mean absolute error of -0.443 (Table 3). These results are comparable to what we observed in our testing score where we observed very similar values.
 
 ```{r table_3, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_test_results.feather"
