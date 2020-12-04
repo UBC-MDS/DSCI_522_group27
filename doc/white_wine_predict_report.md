@@ -10,7 +10,7 @@ the cross-validation for these three models, we chose random forest
 regressor as our best performance model by comparing different metrics.
 We tried hyperparameter optimization with random forest regressor to get
 the r2 score of 0.492 as our final test score with a negative mean
-squared error of -0.443, which seems to be not reasonable here (Note
+absolute error of -0.443, which seems to be not reasonable here (Note
 that we have imbalanced data). Therefore, random forest regressor may
 not be an appropriate model to use here. However, we can find other
 complex models to improve our test scores, or we can carry out a
@@ -125,8 +125,8 @@ those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0021821 |  0.0069011 |    2.2330060 |
-| score\_time                       |      0.0022649 |  0.0042872 |    0.0359098 |
+| fit\_time                         |      0.0010484 |  0.0039698 |    2.2993660 |
+| score\_time                       |      0.0008756 |  0.0031053 |    0.0345884 |
 | test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
 | train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
 | test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
@@ -144,8 +144,8 @@ training score of 0.929 and a testing score of 0.505 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |  10.5366558 |
-| score\_time                       |   0.1296017 |
+| fit\_time                         |  10.1597231 |
+| score\_time                       |   0.1239612 |
 | test\_neg\_mean\_squared\_error   |  -0.3905119 |
 | train\_neg\_mean\_squared\_error  |  -0.0558802 |
 | test\_neg\_mean\_absolute\_error  |  -0.4569208 |
@@ -175,7 +175,7 @@ our RandomForestRegressor model.
 After performing tuning on all of our hyperparamters we made another
 `RandomForestClassifier` model using the optimized values. This resulted
 in r2 score of 0.492 when run through our final test with a negative
-mean squared error of -0.443 (Table 3). These results are comparable to
+mean absolute error of -0.443 (Table 3). These results are comparable to
 what we observed in our testing score where we observed very similar
 values.
 

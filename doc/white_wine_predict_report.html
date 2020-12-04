@@ -28,7 +28,7 @@ body {
 <h1 id="predicting-quality-of-white-wine-from-various-characteristics">Predicting quality of white wine from various characteristics</h1>
 <p>DSCI 522 group 27</p>
 <h1 id="summary"><strong>Summary</strong></h1>
-<p>Here we tried different models such as dummy regressor, ridge and random forest regressor to predict the white wine quality. When we carried out the cross-validation for these three models, we chose random forest regressor as our best performance model by comparing different metrics. We tried hyperparameter optimization with random forest regressor to get the r2 score of 0.492 as our final test score with a negative mean squared error of -0.443, which seems to be not reasonable here (Note that we have imbalanced data). Therefore, random forest regressor may not be an appropriate model to use here. However, we can find other complex models to improve our test scores, or we can carry out a different metric or tune other hyperparameters to get a better result. Moreover, we can also change the prediction task from a regression problem to a classification problem in order to find a better prediction.</p>
+<p>Here we tried different models such as dummy regressor, ridge and random forest regressor to predict the white wine quality. When we carried out the cross-validation for these three models, we chose random forest regressor as our best performance model by comparing different metrics. We tried hyperparameter optimization with random forest regressor to get the r2 score of 0.492 as our final test score with a negative mean absolute error of -0.443, which seems to be not reasonable here (Note that we have imbalanced data). Therefore, random forest regressor may not be an appropriate model to use here. However, we can find other complex models to improve our test scores, or we can carry out a different metric or tune other hyperparameters to get a better result. Moreover, we can also change the prediction task from a regression problem to a classification problem in order to find a better prediction.</p>
 <h1 id="introduction"><strong>Introduction</strong></h1>
 <p>The wine market occupies a significant position among consumers. For manufacturers, the quality of alcohol significantly affects the sales of alcoholic beverages, but the taster is not necessarily the only standard for judging the quality of alcoholic beverages. We can establish a model to estimate the quality of alcoholic drinks through chemical substances. However, this may require a lot of professional knowledge. We found a good article which was written by Dr. P. Cortez, Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis, and they used a data mining approach to get promising results comparing neural network methods (Cortez et al. 2009).</p>
 <p>Here we want to try different regression models to predict the wine quality based on the physicochemical test features. Answering this question is crucial since we want to support the wine tasting evaluations of oenologists and contribute to wine production (Cortez et al. 2009).</p>
@@ -73,15 +73,15 @@ white wine dataset.
 <tbody>
 <tr class="odd">
 <td align="left">fit_time</td>
-<td align="right">0.0021821</td>
-<td align="right">0.0069011</td>
-<td align="right">2.2330060</td>
+<td align="right">0.0010484</td>
+<td align="right">0.0039698</td>
+<td align="right">2.2993660</td>
 </tr>
 <tr class="even">
 <td align="left">score_time</td>
-<td align="right">0.0022649</td>
-<td align="right">0.0042872</td>
-<td align="right">0.0359098</td>
+<td align="right">0.0008756</td>
+<td align="right">0.0031053</td>
+<td align="right">0.0345884</td>
 </tr>
 <tr class="odd">
 <td align="left">test_neg_mean_squared_error</td>
@@ -133,11 +133,11 @@ white wine dataset.
 <tbody>
 <tr class="odd">
 <td align="left">fit_time</td>
-<td align="right">10.5366558</td>
+<td align="right">10.1597231</td>
 </tr>
 <tr class="even">
 <td align="left">score_time</td>
-<td align="right">0.1296017</td>
+<td align="right">0.1239612</td>
 </tr>
 <tr class="odd">
 <td align="left">test_neg_mean_squared_error</td>
@@ -177,7 +177,7 @@ our RandomForestRegressor model.
 
 </div>
 
-<p>After performing tuning on all of our hyperparamters we made another <code>RandomForestClassifier</code> model using the optimized values. This resulted in r2 score of 0.492 when run through our final test with a negative mean squared error of -0.443 (Table 3). These results are comparable to what we observed in our testing score where we observed very similar values.</p>
+<p>After performing tuning on all of our hyperparamters we made another <code>RandomForestClassifier</code> model using the optimized values. This resulted in r2 score of 0.492 when run through our final test with a negative mean absolute error of -0.443 (Table 3). These results are comparable to what we observed in our testing score where we observed very similar values.</p>
 <table>
 <thead>
 <tr class="header">
