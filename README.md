@@ -16,15 +16,13 @@ The final report can be found [here](https://htmlpreview.github.io/?https://gith
 
 ## Usage
 
-To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands from the main directory of the project:
+To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands from the main directory of the project:
 ```
 make all
-
 ```
 To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
 ```
 make clean
-
 ```
 ## Dependencies
 
@@ -35,8 +33,9 @@ make clean
       - matplotlib==3.3.3
       - altair==4.1.0
       - numpy==1.19.4
-      - sklearn==0.23.2
+      - scikit-learn==0.23.2
       - altair_saver==0.5.0
+      - pyarrow==2.0.0
       
   - R version 3.6 and R packages:
       - rmarkdown==2.5
