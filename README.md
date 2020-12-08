@@ -46,7 +46,7 @@ make clean
   - GNU make 4.2.1
   
   - Vega-Lite and Canvas
-      - these must be installed into base environment using command `npm install -g vega-lite vega-cli canvas`
+      - these must be installed into base environment using command `npm install -g vega vega-lite vega-cli canvas`
       
  
 # License 
