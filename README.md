@@ -16,6 +16,26 @@ The final report can be found [here](https://htmlpreview.github.io/?https://gith
 
 ## Usage
 
+#### 1\. Using Docker
+
+*note - the instructions in this section also depends on running this in
+a unix shell (e.g., terminal or Git Bash)*
+
+To replicate the analysis, install
+[Docker](https://www.docker.com/get-started). Then clone this GitHub
+repository and run the following command at the command line/terminal
+from the root directory of this project:
+
+    sudo docker run --rm -v "$(pwd):/project" -it tingyuzhang00/dsci_522_group27 make all
+
+To reset the repo to a clean state, with no intermediate or results
+files, run the following command at the command line/terminal from the
+root directory of this project:
+
+    sudo docker run --rm -v "$(pwd):/project" -it tingyuzhang00/dsci_522_group27 make clean
+
+#### 2\. Without using Docker
+
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands from the main directory of the project:
 ```
 make all
@@ -47,7 +67,9 @@ make clean
   
   - Vega-Lite and Canvas
       - these must be installed into base environment using command `npm install -g vega vega-lite vega-cli canvas`
-  
+
+## Dependency diagram
+
   <img src="./out.png" height="300" width="1000">
 
 # License 
