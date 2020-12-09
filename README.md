@@ -46,9 +46,10 @@ make clean
   - GNU make 4.2.1
   
   - Vega-Lite and Canvas
-      - these must be installed into base environment using command `npm install -g vega-lite vega-cli canvas`
-      
- 
+      - these must be installed into base environment using command `npm install -g vega vega-lite vega-cli canvas`
+  
+  <img src="./out.png" height="300" width="1000">
+
 # License 
 The materials on predicting white wine quality are licensed under the MIT License 
 (Copyright (c) 2020 Master of Data Science at the University of British Columbia)
