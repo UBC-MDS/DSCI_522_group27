@@ -26,13 +26,13 @@ To replicate the analysis, install
 repository and run the following command at the command line/terminal
 from the root directory of this project:
 
-    sudo docker run --rm -v $(pwd):/project -it tingyuzhang00/dsci_522_group27 make all
+    sudo docker run --rm -v "$(pwd):/project" -it tingyuzhang00/dsci_522_group27 make all
 
 To reset the repo to a clean state, with no intermediate or results
 files, run the following command at the command line/terminal from the
 root directory of this project:
 
-    sudo docker run --rm -v $(pwd):/project -it tingyuzhang00/dsci_522_group27 make clean
+    sudo docker run --rm -v "$(pwd):/project" -it tingyuzhang00/dsci_522_group27 make clean
 
 #### 2\. Without using Docker
 
