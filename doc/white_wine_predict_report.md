@@ -155,7 +155,7 @@ training r2 score of 0.931 and a validation r2 score of 0.504 (Table 2).
 Table 2. Cross-validation training results of the tuned random forest
 regression model
 
-Running our hyperparameter tuned `RandomForestClassifier` model on our
+Running our hyperparameter tuned `RandomForestRegressor` model on our
 test data resulted in an r2 test score of 0.492 and a negative mean
 absolute error of -0.444 (Table 3). These results are comparable to
 those that we observed in our validation scoring, which produced similar
