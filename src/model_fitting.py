@@ -139,7 +139,7 @@ def hyperparameter_tuning(data_folder, results_folder):
         param_distributions=param_grid,
         n_iter=28,
         cv=3,
-        n_jobs=10,
+        n_jobs=-2,
         random_state=2020,
     )
 
@@ -155,7 +155,7 @@ def hyperparameter_tuning(data_folder, results_folder):
 
     # Fit random search to the data and score the resulting best model
     random_search.fit(X_train, y_train)
-    print("\nTuned Model Parameters: \n" + random_search.best_estimator_)
+    print("\nTuned Model Parameters: \n" + str(random_search.best_estimator_))
 
     results_dict = {}
     scoring = {
@@ -248,7 +248,7 @@ def hyperparameter_tuning(data_folder, results_folder):
         param_distributions=param_grid,
         n_iter=28,
         cv=3,
-        n_jobs=10,
+        n_jobs=-2,
         random_state=2020,
     )
 
@@ -256,7 +256,7 @@ def hyperparameter_tuning(data_folder, results_folder):
     random_search_reduced.fit(X_train_reduced, y_train)
     print(
         "\nTuned Model Parameters (Reduced Features): \n"
-        + random_search.best_estimator_
+        + str(random_search.best_estimator_)
     )
 
     scores = cross_validate(
