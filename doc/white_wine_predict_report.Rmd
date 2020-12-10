@@ -53,7 +53,7 @@ kable(read_feather(path),
       caption="Table 1. Table of cross-validation results for each tested model")
 ```
 
-We found that random forest classifier worked best with our dataset and decided to perform random search hyperparameter optimization (with 28 iterations) to tune the hyperparameters `n_estimators` and `max_depth`, for which we obtained the best values of 300 and 10, respectively. Running `RandomForestRegressor` with these hyperparameters resulted in a training r2 score of 0.931 and a validation r2 score of 0.504 (Table 2).
+We found that random forest classifier worked best with our dataset and decided to perform random search hyperparameter optimization (with 28 iterations) to tune the hyperparameters `n_estimators` and `max_depth`, for which we obtained the best values of 2000 and 30, respectively. Running `RandomForestRegressor` with these hyperparameters resulted in a training r2 score of 0.931 and a validation r2 score of 0.504 (Table 2).
 
 ```{r table_2, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_crossval_results.feather"
