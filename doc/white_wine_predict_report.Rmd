@@ -39,20 +39,14 @@ A classification model was built with python scripts using the sk-learn `RandomF
 
 # **Results & Discussion**
 
-After splitting our dataset into a training set and a test set we plotted the distribution of the quality scores for each wine (Figure 1). Despite the quality scoring being performed a scale from 1-10 only values in the range of 3-9 were observed. 6 was the most common score observed across all testing.
+After splitting our dataset into a training set and a validation set we plotted the distribution of the quality scores for each wine (Figure 1). Despite the quality scoring being performed a scale from 1-10 only values in the range of 3-9 were observed. 6 was the most common score observed across all testing.
 
 ```{r fig_1, echo=FALSE, fig.cap="Figure 1. Quality distribution of wines in the training and test datasets.", out.width = '60%'}
 knitr::include_graphics("../results/quality_distributions_figure.png")
 # [picture of our correlation plot]
 ```
 
-To determine how useful strong of an influence each feature has on the quality score we created a correlation plot using the altair package (built off of Vega-Lite) which shows how each of the different features is correlated with each other (Figure 2) [@VanderPlas2018], [@Satyanarayan2017]. This chart showed us that different features had varying degrees of influence on the quality score, with increased alcohol content and decreased density most heavily influencing the quality score.
-
-```{r fig_2, echo=FALSE, fig.cap="Figure 2. Correlation plot of the correlation between features in the white wine dataset.", out.width = '60%'}
-knitr::include_graphics("../results/corr_figure.png")
-```
-
-In order to determine which model works best with our data we decided to test both the `RidgeCV()` and `RandomForest()` to compare them against the dummy regressor model. We present the cross-validation values of this testing in Table 1. We found that random forest methods provided the best test and training model scores and decided to proceed with those.
+In order to determine which model works best with our data we decided to test both the `RidgeCV` and `RandomForestRegressor` to compare them against the dummy regressor model. We present the cross-validation values of this testing in Table 1. We determined that random forest methods provided the best training and validation model scores and decided to proceed with those.
 
 ```{r table_1, echo=FALSE, out.width = '60%'}
 path <- "../results/initial_crossval_results.feather"
@@ -60,21 +54,15 @@ kable(read_feather(path),
       caption="Table 1. Table of cross-validation results for each tested model")
 ```
 
-We found that a random forest classifier and, after performing random search hyperparameter optimization, that hyperparameters `n_estimators` and `max_depth` set to values of 300 and 10 respectively produced the best model for our dataset. This resulted in us producing a model with a training score of 0.929 and a testing score of 0.505 (Table 2).
+We found that a random forest classifier worked best with our dataset and decided perform random search hyperparameter optimization to tune the hyperparameters `n_estimators` and `max_depth`, which we determined produced the best scoring model with the values of 300 and 10 respectively. Running a `RandomForestRegressor` with these hyperparameters resulted in a training r2 score of 0.929 and a validation r2 score of 0.505 (Table 2).
 
 ```{r table_2, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_crossval_results.feather"
 kable(read_feather(path),
-      caption="Table 2. Table of cross-validation results of the tuned model")
+      caption="Table 2. Table of cross-validation results of the tuned random forest model")
 ```
 
-We then examined the weight of the features present in our most effective random forest model and charted the effect that each feature had on the model (Figure 3). Alcohol was found to be the feature most highly associated with higher quality scores. Other features such as density, citric acid, and sulphates appear to have limited weight in our model.
-
-```{r fig_3, echo=FALSE, fig.cap="Figure 3. Bar chart showing the target weights of different features of our RandomForestRegressor model.", out.width = '60%'}
-knitr::include_graphics("../results/weights_figure.png")
-```
-
-After performing tuning on all of our hyperparamters we made another `RandomForestClassifier` model using the optimized values. This resulted in r2 score of 0.492 when run through our final test with a negative mean absolute error of -0.443 (Table 3). These results are comparable to what we observed in our testing score where we observed very similar values.
+Running our hyperparamter tuned `RandomForestClassifier` model on our test data resulted in an r2 test score of 0.492 and a negative mean absolute error of -0.443 (Table 3). These results are comparable to those that we observed in our validation scoring, which produced similar values (with scoring differing by only about 0.01).
 
 ```{r table_3, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_test_results.feather"
@@ -82,8 +70,14 @@ kable(read_feather(path),
       caption="Table 3. Tuned test results of RandomForestClassifier.")
 ```
 
+We then examined the weight of the features present in our best scoring `RandomForestClassifier` and charted the weight of each in the model (Figure 2). Alcohol was found to be the feature most heavily associated with higher wine quality scores with a target weight of 0.24. Other features such as density, citric acid, and sulphates appear to have limited weight in our model. In an attempt to further improve the scoring of our model we decided to cut all features with a target weight lower than 0.10, meaning we decided to run a model that predicted quality scores based on the features alcohol, free sulfur dioxide, and volatile acidity.
+
+```{r fig_2, echo=FALSE, fig.cap="Figure 2. Bar chart showing the target weights of different features of our RandomForestRegressor model.", out.width = '60%'}
+knitr::include_graphics("../results/weights_figure.png")
+```
+
 # Limitations & Future
 
-Some potential limitations of our model thus far are that we have only tested a handful of different regression methods and only have performed light hyperparameter optimization. There likely exists combinations of models and hyperparamters which will lead to better scoring in our model. SVM might be an effective model to test for our problem as it was specifically mentioned in the paper by Cortez et al. [@CORTEZ2009547]. Another way to improve our model would be to implement a form of feature selection (such as RFECV) given that we are still including all features and that many of them seem to have little influence on the scoring of our model. We could also potentially find a larger dataset (i.e. with wine from around the world) or with more features since the one we are currently working with has a limited number of features (i.e. type of grape used in the wine) due for the sake of privacy protection.
+Some potential limitations of our model are that we have only tested a handful of different regression methods and only have performed light hyperparameter optimization via a random search. There likely exists combinations of models and hyperparamters (perhaps determined through a grid search, though this would increase the runtime of our model significantly) which would lead to better scoring in our model. For example, using support vector machine (SVM) methods might be a more effective way to predict wine scores as they were specifically mentioned by Cortez et al. in their paper analyzing the dataset [@CORTEZ2009547]. Another way to improve our model would be to implement a form of feature selection (such as RFECV) given that we our current method involves us manually selecting our features based on their target weights. Another way to improve this model would be to work with a larger dataset (i.e. with wine/judges from around the world) or with a greater number of features since the one we are currently working with does not list some information that could potentially be correlated with scoring (type of grape used in the wine, price, etc.) which are currently omitted for the sake of privacy protection.
 
 # References
