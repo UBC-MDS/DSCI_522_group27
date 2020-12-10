@@ -108,7 +108,6 @@ def hyperparameter_tuning(data_folder, results_folder):
     param_grid = {
         "randomforestregressor__n_estimators": [300, 600, 900],
         "randomforestregressor__max_depth": [10, 20, 30, 40],
-        "randomforestregressor__bootstrap": [True, False],
         "randomforestregressor__min_samples_leaf": [1, 2, 4],
         "randomforestregressor__min_samples_split": [2, 5, 10],
     }
@@ -192,6 +191,81 @@ def hyperparameter_tuning(data_folder, results_folder):
         .configure_axis(labelFontSize=16)
     )
     weigths_figure.save(os.path.join(results_folder, "weights_figure.png"))
+
+    # We noticed some of the weights were much higher than others...
+    # What if we run a model with only the highest weight features?
+    X_train_reduced = X_train.drop(
+        columns=[
+            "pH",
+            "total sulfur dioxide",
+            "residual sugar",
+            "chlorides",
+            "sulphates",
+            "fixed acidity",
+            "density",
+            "citric acid",
+        ]
+    )
+    X_test_reduced = X_test.drop(
+        columns=[
+            "pH",
+            "total sulfur dioxide",
+            "residual sugar",
+            "chlorides",
+            "sulphates",
+            "fixed acidity",
+            "density",
+            "citric acid",
+        ]
+    )
+    # Need to perform a second round of hyperparameter tuning
+    random_search_reduced = RandomizedSearchCV(
+        pipe_randomforest,
+        param_distributions=param_grid,
+        n_iter=28,
+        cv=3,
+        n_jobs=-1,
+        random_state=2020,
+    )
+
+    results_dict = {}
+    random_search_reduced.fit(X_train_reduced, y_train)
+    scores = cross_validate(
+        random_search_reduced.best_estimator_,
+        X_train_reduced,
+        y_train,
+        return_train_score=True,
+        scoring=scoring,
+    )
+    reduced_model_scores_df = pd.DataFrame(scores).mean()
+    results_dict["Tuned Model (Reduced Features)"] = reduced_model_scores_df
+
+    reduced_tuned_crossval_results = pd.DataFrame(results_dict)
+    reduced_tuned_crossval_results.reset_index().to_feather(
+        os.path.join(results_folder, "reduced_tuned_crossval_results.feather"),
+        compression="uncompressed",
+    )
+
+    reduced_test_model = random_search_reduced.best_estimator_.fit(
+        X_train_reduced, y_train
+    )
+    y_pred_reduced = reduced_test_model.predict(X_test_reduced)
+    mse = mean_squared_error(y_test, y_pred_reduced)
+    mae = mean_absolute_error(y_test, y_pred_reduced)
+    r2 = r2_score(y_test, y_pred_reduced)
+
+    test_results_dict = {}
+    test_results_dict["Test Results"] = {
+        "neg_mean_squared_error": -1 * mse,
+        "neg_mean_absolute_error": -1 * mae,
+        "r2": r2,
+    }
+
+    test_results_df = pd.DataFrame(test_results_dict)
+    test_results_df.reset_index().to_feather(
+        os.path.join(results_folder, "reduced_tuned_test_results.feather"),
+        compression="uncompressed",
+    )
 
 
 if __name__ == "__main__":
