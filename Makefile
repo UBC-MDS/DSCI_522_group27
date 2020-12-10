@@ -3,7 +3,7 @@
 # date: 2020-12-05
 
 
-all: results/reduced_tuned_crossval_results.feather results/reduced_tuned_test_results.feather results/quality_distributions_figure.png results/weights_figure.png results/initial_crossval_results.feather results/tuned_crossval_results.feather results/tuned_test_results.feather doc/white_wine_predict_report.md doc/white_wine_predict_report.html
+all: results/quality_distributions_figure.png results/weights_figure.png results/initial_crossval_results.feather results/tuned_crossval_results.feather results/tuned_test_results.feather results/reduced_tuned_crossval_results.feather results/reduced_tuned_test_results.feather doc/white_wine_predict_report.md doc/white_wine_predict_report.html
   
 # download data and save as csv
 data/raw_data.csv: src/download_data.py
