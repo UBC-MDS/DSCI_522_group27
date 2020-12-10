@@ -18,7 +18,7 @@ the observed r2 scores, a random forest regressor may not be an
 appropriate model to use here. Ways that our model could be further
 improved would be to investigate the use of other complex models to
 improve our test scores, scoring on different metrics to guide our model
-selection and hyperparamter tuning, further hyperparameter tuning with
+selection and hyperparameter tuning, further hyperparameter tuning with
 our current model, or the use of more effective feature selection
 methods. Additionally, we could also experiment with changing the
 prediction task from a regression problem to a classification problem in
@@ -34,17 +34,17 @@ representing a standard for of quality for the given beverage. In order
 to challenge this, we can establish a model tuned through machine
 learning to estimate the quality of alcoholic drinks based on specific
 chemical properties of each beverage. However, this task will likely
-require a lot of insider knowledge. We found a well written by Dr. P.
-Cortez, Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis,
-where they were able to demonstrate the results of a data mining
+require a lot of insider knowledge. We found a well written paper by
+Dr. P. Cortez, Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J.
+Reis, where they were able to demonstrate the results of a data mining
 approach which demonstrated promising results compared to alternative
 neural network methods (Cortez et al. 2009).
 
 Here we want to try different regression models to predict the wine
-quality based on the results of physicochemical tests. Answers to this
-question could be used in support of the wine tasting evaluations of
-oenologists and contribute to improved wine production quality (Cortez
-et al. 2009).
+quality based on the results of physicochemical tests. The results of
+this experiment could be used in support of the wine tasting evaluations
+of oenologists and contribute to improved wine production quality
+(Cortez et al. 2009).
 
 # **Methods**
 
@@ -66,12 +66,12 @@ single wine which was tested and scored based on sensory data.
 
 ## **Analysis**
 
-A classification model was built with python scripts using the sk-learn
+A regression model was built with python scripts using the sk-learn
 `RandomForestRegressor` algorithm and allowed us to predict a sensory
 score based on the physiochemical testing information recorded for each
 wine(Van Rossum and Drake 2009), (Pedregosa et al. 2011). Because of the
-privacy constraints of the data our dataset is somewhat limited since
-useful potentially factors that might influence the scoring such as
+privacy constraints of the data, our dataset is somewhat limited since
+potentially useful factors that might influence the scoring such as
 grape types, brand names, or price are not available to us. Assumptions
 we made regarding this dataset are that the quality scores came from the
 opinions of wine critics and that testing for all wines was consistent.
@@ -99,9 +99,12 @@ across all testing while scores such as 3 and 9 were rarely seen.
 <div class="figure">
 
 <img src="../results/quality_distributions_figure.png" alt="Figure 1. Quality distribution of wines in the training and test datasets." width="60%" />
+
 <p class="caption">
+
 Figure 1. Quality distribution of wines in the training and test
 datasets.
+
 </p>
 
 </div>
@@ -110,55 +113,52 @@ In order to determine which model works best with our data we decided to
 test both the `RidgeCV` and `RandomForestRegressor` to compare them
 against the dummy regressor model. Scoring was done with r2 scores due
 to an imbalance in our data. We present the cross-validation values of
-this testing in Table 1. We determined that random forest methods
-provided the best training and validation model r2 scores and decided to
-proceed with those.
+this testing in Table 1.
 
-| index                             | dummyregressor |      ridge | randomforest |
-|:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0010512 |  0.0032930 |    1.2615545 |
-| score\_time                       |      0.0009816 |  0.0023767 |    0.0197312 |
-| test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
-| train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
-| test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
-| train\_neg\_mean\_absolute\_error |     -0.6765906 | -0.5871736 |   -0.1705949 |
-| test\_r2                          |     -0.0007601 |  0.2655188 |    0.5029517 |
-| train\_r2                         |      0.0000000 |  0.2797630 |    0.9298684 |
+| index                             | dummyregressor |       ridge | randomforest |
+| :-------------------------------- | -------------: | ----------: | -----------: |
+| fit\_time                         |      0.0024928 |   0.0169001 |    2.7812567 |
+| score\_time                       |      0.0021937 |   0.0084829 |    0.0412519 |
+| test\_neg\_mean\_squared\_error   |    \-0.7899251 | \-0.5794524 |  \-0.3924718 |
+| train\_neg\_mean\_squared\_error  |    \-0.7896847 | \-0.5687437 |  \-0.0553803 |
+| test\_neg\_mean\_absolute\_error  |    \-0.6766545 | \-0.5909963 |  \-0.4585544 |
+| train\_neg\_mean\_absolute\_error |    \-0.6765906 | \-0.5871736 |  \-0.1705949 |
+| test\_r2                          |    \-0.0007601 |   0.2655188 |    0.5029517 |
+| train\_r2                         |      0.0000000 |   0.2797630 |    0.9298684 |
 
 Table 1. Table of cross-validation results for each tested model
 
-We found that a random forest classifier worked best with our dataset
-and decided perform random search hyperparameter optimization to tune
-the hyperparameters `n_estimators` and `max_depth`, which we determined
-produced the best scoring model with the values of 300 and 10
-respectively. Running a `RandomForestRegressor` with these
-hyperparameters resulted in a training r2 score of 0.929 and a
-validation r2 score of 0.505 (Table 2).
+We found that random forest classifier worked best with our dataset and
+decided to perform random search hyperparameter optimization to tune the
+hyperparameters `n_estimators` and `max_depth`, for which we obtained
+the best values of 300 and 10, respectively. Running
+`RandomForestRegressor` with these hyperparameters resulted in a
+training r2 score of 0.931 and a validation r2 score of 0.504 (Table 2).
 
 | index                             | Tuned Model |
-|:----------------------------------|------------:|
-| fit\_time                         |   3.5001678 |
-| score\_time                       |   0.0476474 |
-| test\_neg\_mean\_squared\_error   |  -0.3916881 |
-| train\_neg\_mean\_squared\_error  |  -0.0540871 |
-| test\_neg\_mean\_absolute\_error  |  -0.4573886 |
-| train\_neg\_mean\_absolute\_error |  -0.1693011 |
+| :-------------------------------- | ----------: |
+| fit\_time                         |   7.4291878 |
+| score\_time                       |   0.1052589 |
+| test\_neg\_mean\_squared\_error   | \-0.3916881 |
+| train\_neg\_mean\_squared\_error  | \-0.0540871 |
+| test\_neg\_mean\_absolute\_error  | \-0.4573886 |
+| train\_neg\_mean\_absolute\_error | \-0.1693011 |
 | test\_r2                          |   0.5038444 |
 | train\_r2                         |   0.9315046 |
 
 Table 2. Cross-validation training results of the tuned random forest
 model
 
-Running our hyperparamter tuned `RandomForestClassifier` model on our
+Running our hyperparameter tuned `RandomForestClassifier` model on our
 test data resulted in an r2 test score of 0.492 and a negative mean
-absolute error of -0.443 (Table 3). These results are comparable to
+absolute error of -0.444 (Table 3). These results are comparable to
 those that we observed in our validation scoring, which produced similar
-values (with scoring differing by only about 0.01).
+values (with r2 scoring differing by only about 0.01).
 
 | index                      | Test Results |
-|:---------------------------|-------------:|
-| neg\_mean\_absolute\_error |   -0.4441689 |
-| neg\_mean\_squared\_error  |   -0.3897534 |
+| :------------------------- | -----------: |
+| neg\_mean\_absolute\_error |  \-0.4441689 |
+| neg\_mean\_squared\_error  |  \-0.3897534 |
 | r2                         |    0.4922856 |
 
 Table 3. Tuned RandomForestClassifier model test results.
@@ -168,20 +168,23 @@ We then examined the weight of the features present in our best scoring
 (Figure 2). Alcohol was found to be the feature most heavily associated
 with higher wine quality scores with a target weight of 0.24. Other
 features such as density, citric acid, and sulphates appear to have
-limited weight in our model.
+limited influence on our model.
 
 <div class="figure">
 
 <img src="../results/weights_figure.png" alt="Figure 2. Bar chart showing the target weights of different features of our RandomForestRegressor model." width="60%" />
+
 <p class="caption">
+
 Figure 2. Bar chart showing the target weights of different features of
 our RandomForestRegressor model.
+
 </p>
 
 </div>
 
 In an attempt to further improve the scoring of our model we decided to
-cut all features with a target weight lower than 0.10, meaning we
+drop all features with a target weight lower than 0.10, meaning we
 decided to run a model that predicted quality scores based on the
 features alcohol, free sulfur dioxide, and volatile acidity. Thus we ran
 the model again with only these features and observed an improved
@@ -191,13 +194,13 @@ compared to our version of the model which did not have these features
 removed.
 
 | index                             | Tuned Model (Reduced Features) |
-|:----------------------------------|-------------------------------:|
-| fit\_time                         |                      3.0780407 |
-| score\_time                       |                      0.1300221 |
-| test\_neg\_mean\_squared\_error   |                     -0.4912540 |
-| train\_neg\_mean\_squared\_error  |                     -0.2265698 |
-| test\_neg\_mean\_absolute\_error  |                     -0.5342196 |
-| train\_neg\_mean\_absolute\_error |                     -0.3653063 |
+| :-------------------------------- | -----------------------------: |
+| fit\_time                         |                      7.0817819 |
+| score\_time                       |                      0.2717951 |
+| test\_neg\_mean\_squared\_error   |                    \-0.4912540 |
+| train\_neg\_mean\_squared\_error  |                    \-0.2265698 |
+| test\_neg\_mean\_absolute\_error  |                    \-0.5342196 |
+| train\_neg\_mean\_absolute\_error |                    \-0.3653063 |
 | test\_r2                          |                      0.3774210 |
 | train\_r2                         |                      0.7130618 |
 
@@ -216,9 +219,9 @@ is the one that is represented in table 2 and table 3, and that they
 represent the highest scoring model we have produced for our dataset.
 
 | index                      | Test Results |
-|:---------------------------|-------------:|
-| neg\_mean\_absolute\_error |   -0.5287068 |
-| neg\_mean\_squared\_error  |   -0.4959236 |
+| :------------------------- | -----------: |
+| neg\_mean\_absolute\_error |  \-0.5287068 |
+| neg\_mean\_squared\_error  |  \-0.4959236 |
 | r2                         |    0.3539826 |
 
 Table 5. Tuned (+ reduced features) RandomForestClassifier model test
@@ -229,7 +232,7 @@ results.
 Some potential limitations of our model are that we have only tested a
 handful of different regression methods and only have performed light
 hyperparameter optimization via a random search. There likely exists
-combinations of models and hyperparamters (perhaps determined through a
+combinations of models and hyperparameters (perhaps determined through a
 grid search, though this would increase the runtime of our model
 significantly) which would lead to better scoring in our model. For
 example, using support vector machine (SVM) methods might be a more
@@ -257,7 +260,7 @@ range of 3 to 9 being the only scores used in our dataset.
 
 # References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references">
 
 <div id="ref-rmarkdown">
 
