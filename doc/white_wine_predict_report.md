@@ -123,8 +123,8 @@ the cross-validation values of this testing in Table 1.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0010512 |  0.0032930 |    1.2615545 |
-| score\_time                       |      0.0009816 |  0.0023767 |    0.0197312 |
+| fit\_time                         |      0.0009468 |  0.0029685 |    1.1786951 |
+| score\_time                       |      0.0007962 |  0.0023263 |    0.0178180 |
 | test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
 | train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
 | test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
@@ -137,20 +137,20 @@ Table 1. Table of cross-validation results for each tested model
 We found that random forest classifier worked best with our dataset and
 decided to perform random search hyperparameter optimization (with 28
 iterations) to tune the hyperparameters `n_estimators` and `max_depth`,
-for which we obtained the best values of 300 and 10, respectively.
+for which we obtained the best values of 2000 and 30, respectively.
 Running `RandomForestRegressor` with these hyperparameters resulted in a
 training r2 score of 0.931 and a validation r2 score of 0.504 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   3.5001678 |
-| score\_time                       |   0.0476474 |
-| test\_neg\_mean\_squared\_error   |  -0.3916881 |
-| train\_neg\_mean\_squared\_error  |  -0.0540871 |
-| test\_neg\_mean\_absolute\_error  |  -0.4573886 |
-| train\_neg\_mean\_absolute\_error |  -0.1693011 |
-| test\_r2                          |   0.5038444 |
-| train\_r2                         |   0.9315046 |
+| fit\_time                         |  23.3283576 |
+| score\_time                       |   0.2973887 |
+| test\_neg\_mean\_squared\_error   |  -0.3898822 |
+| train\_neg\_mean\_squared\_error  |  -0.0532080 |
+| test\_neg\_mean\_absolute\_error  |  -0.4555802 |
+| train\_neg\_mean\_absolute\_error |  -0.1683919 |
+| test\_r2                          |   0.5061903 |
+| train\_r2                         |   0.9326150 |
 
 Table 2. Cross-validation training results of the tuned random forest
 model
@@ -163,9 +163,9 @@ values (with r2 scoring differing by only about 0.01).
 
 | index                      | Test Results |
 |:---------------------------|-------------:|
-| neg\_mean\_absolute\_error |   -0.4441689 |
-| neg\_mean\_squared\_error  |   -0.3897534 |
-| r2                         |    0.4922856 |
+| neg\_mean\_absolute\_error |   -0.4411732 |
+| neg\_mean\_squared\_error  |   -0.3873119 |
+| r2                         |    0.4954661 |
 
 Table 3. Tuned RandomForestClassifier model test results.
 
@@ -198,14 +198,14 @@ removed.
 
 | index                             | Tuned Model (Reduced Features) |
 |:----------------------------------|-------------------------------:|
-| fit\_time                         |                      3.0780407 |
-| score\_time                       |                      0.1300221 |
-| test\_neg\_mean\_squared\_error   |                     -0.4912540 |
-| train\_neg\_mean\_squared\_error  |                     -0.2265698 |
-| test\_neg\_mean\_absolute\_error  |                     -0.5342196 |
-| train\_neg\_mean\_absolute\_error |                     -0.3653063 |
-| test\_r2                          |                      0.3774210 |
-| train\_r2                         |                      0.7130618 |
+| fit\_time                         |                      5.3600808 |
+| score\_time                       |                      0.2196057 |
+| test\_neg\_mean\_squared\_error   |                     -0.4881840 |
+| train\_neg\_mean\_squared\_error  |                     -0.1410332 |
+| test\_neg\_mean\_absolute\_error  |                     -0.5211449 |
+| train\_neg\_mean\_absolute\_error |                     -0.2805931 |
+| test\_r2                          |                      0.3813291 |
+| train\_r2                         |                      0.8213872 |
 
 Table 4. Tuned (+ reduced features) RandomForestClassifier
 Cross-validation training results.
@@ -223,9 +223,9 @@ represent the highest scoring model we have produced for our dataset.
 
 | index                      | Test Results |
 |:---------------------------|-------------:|
-| neg\_mean\_absolute\_error |   -0.5287068 |
-| neg\_mean\_squared\_error  |   -0.4959236 |
-| r2                         |    0.3539826 |
+| neg\_mean\_absolute\_error |   -0.5158896 |
+| neg\_mean\_squared\_error  |   -0.4967308 |
+| r2                         |    0.3529310 |
 
 Table 5. Tuned (+ reduced features) RandomForestClassifier model test
 results.
