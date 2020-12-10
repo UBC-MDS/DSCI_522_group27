@@ -5,38 +5,46 @@ DSCI 522 group 27
 # **Summary**
 
 Here we tried different models such as dummy regressor, ridge and random
-forest regressor to predict the white wine quality. When we carried out
-the cross-validation for these three models, we chose random forest
-regressor as our best performance model by comparing different metrics.
-We tried hyperparameter optimization with random forest regressor to get
-the r2 score of 0.492 as our final test score with a negative mean
-absolute error of -0.443, which seems to be not reasonable here (Note
-that we have imbalanced data). Therefore, random forest regressor may
-not be an appropriate model to use here. However, we can find other
-complex models to improve our test scores, or we can carry out a
-different metric or tune other hyperparameters to get a better result.
-Moreover, we can also change the prediction task from a regression
-problem to a classification problem in order to find a better
-prediction.
+forest regressor to predict the quality scores of white wine. We carried
+out cross-validation on these three models and found that a random
+forest regressor achieved the best performance based on the metric of r2
+scoring. We further refined the random forest regressor model through
+random search hyperparameter optimization and observed an r2 test score
+of 0.492 with a negative mean absolute error of -0.443 (note that we
+have imbalanced data, complicating this scoring process). We also
+attempted to remove features with low target weights, however, this
+resulted in a model that performed worse on our data. Moreover, given
+the observed r2 scores, a random forest regressor may not be an
+appropriate model to use here. Ways that our model could be further
+improved would be to investigate the use of other complex models to
+improve our test scores, scoring on different metrics to guide our model
+selection and hyperparamter tuning, further hyperparameter tuning with
+our current model, or the use of more effective feature selection
+methods. Additionally, we could also experiment with changing the
+prediction task from a regression problem to a classification problem in
+order to potentially better match our dataset.
 
 # **Introduction**
 
-The wine market occupies a significant position among consumers. For
-manufacturers, the quality of alcohol significantly affects the sales of
-alcoholic beverages, but the taster is not necessarily the only standard
-for judging the quality of alcoholic beverages. We can establish a model
-to estimate the quality of alcoholic drinks through chemical substances.
-However, this may require a lot of professional knowledge. We found a
-good article which was written by Dr. P. Cortez, Dr. A. Cerdeira, Dr. F.
-Almeida, Dr. T. Matos and Dr. J. Reis, and they used a data mining
-approach to get promising results comparing neural network methods
-(Cortez et al. 2009).
+The wine market is a multi-billion dollar industry which occupies a
+significant position among various consumers worldwide. For some
+manufacturers, the quality of alcohol can significantly affect the sales
+of their product, with the personal tastes of judges typically
+representing a standard for of quality for the given beverage. In order
+to challenge this, we can establish a model tuned through machine
+learning to estimate the quality of alcoholic drinks based on specific
+chemical properties of each beverage. However, this task will likely
+require a lot of insider knowledge. We found a well written by Dr. P.
+Cortez, Dr. A. Cerdeira, Dr. F. Almeida, Dr. T. Matos and Dr. J. Reis,
+where they were able to demonstrate the results of a data mining
+approach which demonstrated promising results compared to alternative
+neural network methods (Cortez et al. 2009).
 
 Here we want to try different regression models to predict the wine
-quality based on the physicochemical test features. Answering this
-question is crucial since we want to support the wine tasting
-evaluations of oenologists and contribute to wine production (Cortez et
-al. 2009).
+quality based on the results of physicochemical tests. Answers to this
+question could be used in support of the wine tasting evaluations of
+oenologists and contribute to improved wine production quality (Cortez
+et al. 2009).
 
 # **Methods**
 
@@ -47,8 +55,8 @@ The dataset that we used came from the University of California Irvine
 University of Minho, Guimarães, Portugal and A. Cerdeira, F. Almeida, T.
 Matos with help from J. Reis, Viticulture Commission of the Vinho Verde
 Region(CVRVV), Porto, Portugal in 2009. The dataset contains the results
-of various physiochemical tests on white “Vinho Verde” wine samples from
-Northern Portugal and can be found
+of various physiochemical test which were preformed on white “Vinho
+Verde” wine samples from Northern Portugal and can be found
 [here](https://archive.ics.uci.edu/ml/datasets/wine+quality)
 specifically with the [white wine
 dataset](%5Bhttps://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv).
@@ -84,8 +92,9 @@ rmarkdown (Allaire et al. 2020).
 After splitting our dataset into a training set and a validation set we
 plotted the distribution of the quality scores for each wine (Figure 1).
 Despite the quality scoring being performed a scale from 1-10 only
-values in the range of 3-9 were observed. 6 was the most common score
-observed across all testing.
+values in the range of 3-9 were observed. It can be seen that our data
+is significantly imbalanced, with 6 being the most common score observed
+across all testing while scores such as 3 and 9 were rarely seen.
 
 <div class="figure">
 
@@ -99,15 +108,16 @@ datasets.
 
 In order to determine which model works best with our data we decided to
 test both the `RidgeCV` and `RandomForestRegressor` to compare them
-against the dummy regressor model. We present the cross-validation
-values of this testing in Table 1. We determined that random forest
-methods provided the best training and validation model scores and
-decided to proceed with those.
+against the dummy regressor model. Scoring was done with r2 scores due
+to an imbalance in our data. We present the cross-validation values of
+this testing in Table 1. We determined that random forest methods
+provided the best training and validation model r2 scores and decided to
+proceed with those.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0009194 |  0.0029257 |    1.2327879 |
-| score\_time                       |      0.0007301 |  0.0022437 |    0.0190658 |
+| fit\_time                         |      0.0010512 |  0.0032930 |    1.2615545 |
+| score\_time                       |      0.0009816 |  0.0023767 |    0.0197312 |
 | test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
 | train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
 | test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
@@ -127,16 +137,16 @@ validation r2 score of 0.505 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |   7.1197869 |
-| score\_time                       |   0.0974426 |
-| test\_neg\_mean\_squared\_error   |  -0.3905119 |
-| train\_neg\_mean\_squared\_error  |  -0.0558802 |
-| test\_neg\_mean\_absolute\_error  |  -0.4569208 |
-| train\_neg\_mean\_absolute\_error |  -0.1736196 |
-| test\_r2                          |   0.5053642 |
-| train\_r2                         |   0.9292326 |
+| fit\_time                         |   3.5001678 |
+| score\_time                       |   0.0476474 |
+| test\_neg\_mean\_squared\_error   |  -0.3916881 |
+| train\_neg\_mean\_squared\_error  |  -0.0540871 |
+| test\_neg\_mean\_absolute\_error  |  -0.4573886 |
+| train\_neg\_mean\_absolute\_error |  -0.1693011 |
+| test\_r2                          |   0.5038444 |
+| train\_r2                         |   0.9315046 |
 
-Table 2. Table of cross-validation results of the tuned random forest
+Table 2. Cross-validation training results of the tuned random forest
 model
 
 Running our hyperparamter tuned `RandomForestClassifier` model on our
@@ -147,22 +157,18 @@ values (with scoring differing by only about 0.01).
 
 | index                      | Test Results |
 |:---------------------------|-------------:|
-| neg\_mean\_absolute\_error |   -0.4434123 |
-| neg\_mean\_squared\_error  |   -0.3896619 |
-| r2                         |    0.4924049 |
+| neg\_mean\_absolute\_error |   -0.4441689 |
+| neg\_mean\_squared\_error  |   -0.3897534 |
+| r2                         |    0.4922856 |
 
-Table 3. Tuned test results of RandomForestClassifier.
+Table 3. Tuned RandomForestClassifier model test results.
 
 We then examined the weight of the features present in our best scoring
 `RandomForestClassifier` and charted the weight of each in the model
 (Figure 2). Alcohol was found to be the feature most heavily associated
 with higher wine quality scores with a target weight of 0.24. Other
 features such as density, citric acid, and sulphates appear to have
-limited weight in our model. In an attempt to further improve the
-scoring of our model we decided to cut all features with a target weight
-lower than 0.10, meaning we decided to run a model that predicted
-quality scores based on the features alcohol, free sulfur dioxide, and
-volatile acidity.
+limited weight in our model.
 
 <div class="figure">
 
@@ -173,6 +179,50 @@ our RandomForestRegressor model.
 </p>
 
 </div>
+
+In an attempt to further improve the scoring of our model we decided to
+cut all features with a target weight lower than 0.10, meaning we
+decided to run a model that predicted quality scores based on the
+features alcohol, free sulfur dioxide, and volatile acidity. Thus we ran
+the model again with only these features and observed an improved
+training r2 score of 0.713 but a decreased validation r2 score of 0.377
+(Table 4). This marks a decrease in both training and validation scores
+compared to our version of the model which did not have these features
+removed.
+
+| index                             | Tuned Model (Reduced Features) |
+|:----------------------------------|-------------------------------:|
+| fit\_time                         |                      3.0780407 |
+| score\_time                       |                      0.1300221 |
+| test\_neg\_mean\_squared\_error   |                     -0.4912540 |
+| train\_neg\_mean\_squared\_error  |                     -0.2265698 |
+| test\_neg\_mean\_absolute\_error  |                     -0.5342196 |
+| train\_neg\_mean\_absolute\_error |                     -0.3653063 |
+| test\_r2                          |                      0.3774210 |
+| train\_r2                         |                      0.7130618 |
+
+Table 4. Tuned (+ reduced features) RandomForestClassifier
+Cross-validation training results.
+
+In order to best understand how this reduced model compares to our
+original model we decided to run the reduced feature model on the test
+set which returned an r2 score of 0.354 and a negative mean absolute
+error of -0.528 (Table 5). This is a significant decrease compared to
+the score of the model from before we removed the features (0.492)
+marking the removal of all feature except alcohol, free sulfur dioxide,
+and volatile acidity a poor decision for the scoring quality of our
+model. This also means that the best model we have built for this data
+is the one that is represented in table 2 and table 3, and that they
+represent the highest scoring model we have produced for our dataset.
+
+| index                      | Test Results |
+|:---------------------------|-------------:|
+| neg\_mean\_absolute\_error |   -0.5287068 |
+| neg\_mean\_squared\_error  |   -0.4959236 |
+| r2                         |    0.3539826 |
+
+Table 5. Tuned (+ reduced features) RandomForestClassifier model test
+results.
 
 # Limitations & Future
 
@@ -185,15 +235,25 @@ significantly) which would lead to better scoring in our model. For
 example, using support vector machine (SVM) methods might be a more
 effective way to predict wine scores as they were specifically mentioned
 by Cortez et al. in their paper analyzing the dataset (Cortez et al.
-2009). Another way to improve our model would be to implement a form of
-feature selection (such as RFECV) given that we our current method
-involves us manually selecting our features based on their target
-weights. Another way to improve this model would be to work with a
+2009). Tuning of one **`RandomForestClassifier`** hyperparameter in
+particular, class\_weight, could potentially help remedy the issues
+introduced by imbalance in our data. Another way to improve our model
+would be to implement a form of feature selection (such as RFECV) given
+that we our current method involves us manually selecting our features
+based on their target weights and currently results in a worse model.
+
+Another avenue of improvement for our model would be to work with a
 larger dataset (i.e. with wine/judges from around the world) or with a
-greater number of features since the one we are currently working with
-does not list some information that could potentially be correlated with
-scoring (type of grape used in the wine, price, etc.) which are
-currently omitted for the sake of privacy protection.
+greater number of features we might expect to be tied to wine quality
+(type of grape used in the wine, price, etc.) since the one we are
+currently working with omits some information for the sake of privacy
+protection.
+
+Additionally, since our current model handles the prediction task as a
+regression problem we may find it useful to experiment with treating it
+as a classification problem instead. This is because wine scoring is
+only done with whole numbers on a scale from 1 to 10, with values in the
+range of 3 to 9 being the only scores used in our dataset.
 
 # References
 
