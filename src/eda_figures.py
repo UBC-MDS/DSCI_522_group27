@@ -101,7 +101,7 @@ def make_eda_figures(data_folder, raw_data_file, results_folder):
     #     .configure_legend(titleFontSize=15)
     # )
 
-    # Save figures in html (png was giving me errors for saving?)
+    # Save figures as png
     if not os.path.isdir(results_folder):
         os.mkdir(results_folder)
     quality_distributions.save(
