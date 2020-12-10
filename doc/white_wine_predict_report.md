@@ -123,8 +123,8 @@ the cross-validation values of this testing in Table 1.
 
 | index                             | dummyregressor |      ridge | randomforest |
 |:----------------------------------|---------------:|-----------:|-------------:|
-| fit\_time                         |      0.0009468 |  0.0029685 |    1.1786951 |
-| score\_time                       |      0.0007962 |  0.0023263 |    0.0178180 |
+| fit\_time                         |      0.0008088 |  0.0028303 |    1.1967660 |
+| score\_time                       |      0.0007393 |  0.0022720 |    0.0184551 |
 | test\_neg\_mean\_squared\_error   |     -0.7899251 | -0.5794524 |   -0.3924718 |
 | train\_neg\_mean\_squared\_error  |     -0.7896847 | -0.5687437 |   -0.0553803 |
 | test\_neg\_mean\_absolute\_error  |     -0.6766545 | -0.5909963 |   -0.4585544 |
@@ -143,8 +143,8 @@ training r2 score of 0.931 and a validation r2 score of 0.504 (Table 2).
 
 | index                             | Tuned Model |
 |:----------------------------------|------------:|
-| fit\_time                         |  23.3283576 |
-| score\_time                       |   0.2973887 |
+| fit\_time                         |  23.2640579 |
+| score\_time                       |   0.2973605 |
 | test\_neg\_mean\_squared\_error   |  -0.3898822 |
 | train\_neg\_mean\_squared\_error  |  -0.0532080 |
 | test\_neg\_mean\_absolute\_error  |  -0.4555802 |
@@ -153,7 +153,7 @@ training r2 score of 0.931 and a validation r2 score of 0.504 (Table 2).
 | train\_r2                         |   0.9326150 |
 
 Table 2. Cross-validation training results of the tuned random forest
-model
+regression model
 
 Running our hyperparameter tuned `RandomForestClassifier` model on our
 test data resulted in an r2 test score of 0.492 and a negative mean
@@ -167,10 +167,10 @@ values (with r2 scoring differing by only about 0.01).
 | neg\_mean\_squared\_error  |   -0.3873119 |
 | r2                         |    0.4954661 |
 
-Table 3. Tuned RandomForestClassifier model test results.
+Table 3. Tuned RandomForestRegressor model test results.
 
 We then examined the weight of the features present in our best scoring
-`RandomForestClassifier` and charted the weight of each in the model
+`RandomForestRegressor` and charted the weight of each in the model
 (Figure 2). Alcohol was found to be the feature most heavily associated
 with higher wine quality scores with a target weight of 0.24. Other
 features such as density, citric acid, and sulphates appear to have
@@ -198,8 +198,8 @@ removed.
 
 | index                             | Tuned Model (Reduced Features) |
 |:----------------------------------|-------------------------------:|
-| fit\_time                         |                      5.3600808 |
-| score\_time                       |                      0.2196057 |
+| fit\_time                         |                      5.0925729 |
+| score\_time                       |                      0.2076304 |
 | test\_neg\_mean\_squared\_error   |                     -0.4881840 |
 | train\_neg\_mean\_squared\_error  |                     -0.1410332 |
 | test\_neg\_mean\_absolute\_error  |                     -0.5211449 |
@@ -207,7 +207,7 @@ removed.
 | test\_r2                          |                      0.3813291 |
 | train\_r2                         |                      0.8213872 |
 
-Table 4. Tuned (+ reduced features) RandomForestClassifier
+Table 4. Tuned (+ reduced features) RandomForestRegressor
 Cross-validation training results.
 
 In order to best understand how this reduced model compares to our
@@ -227,7 +227,7 @@ represent the highest scoring model we have produced for our dataset.
 | neg\_mean\_squared\_error  |   -0.4967308 |
 | r2                         |    0.3529310 |
 
-Table 5. Tuned (+ reduced features) RandomForestClassifier model test
+Table 5. Tuned (+ reduced features) RandomForestRegressor model test
 results.
 
 # Limitations & Future
