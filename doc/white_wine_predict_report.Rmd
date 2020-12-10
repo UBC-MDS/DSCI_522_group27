@@ -58,7 +58,7 @@ We found that random forest classifier worked best with our dataset and decided 
 ```{r table_2, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_crossval_results.feather"
 kable(read_feather(path),
-      caption="Table 2. Cross-validation training results of the tuned random forest model")
+      caption="Table 2. Cross-validation training results of the tuned random forest regression model")
 ```
 
 Running our hyperparameter tuned `RandomForestClassifier` model on our test data resulted in an r2 test score of 0.492 and a negative mean absolute error of -0.444 (Table 3). These results are comparable to those that we observed in our validation scoring, which produced similar values (with r2 scoring differing by only about 0.01).
@@ -66,10 +66,10 @@ Running our hyperparameter tuned `RandomForestClassifier` model on our test data
 ```{r table_3, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_test_results.feather"
 kable(read_feather(path),
-      caption="Table 3. Tuned RandomForestClassifier model test results.")
+      caption="Table 3. Tuned RandomForestRegressor model test results.")
 ```
 
-We then examined the weight of the features present in our best scoring `RandomForestClassifier` and charted the weight of each in the model (Figure 2). Alcohol was found to be the feature most heavily associated with higher wine quality scores with a target weight of 0.24. Other features such as density, citric acid, and sulphates appear to have limited influence on our model.
+We then examined the weight of the features present in our best scoring `RandomForestRegressor` and charted the weight of each in the model (Figure 2). Alcohol was found to be the feature most heavily associated with higher wine quality scores with a target weight of 0.24. Other features such as density, citric acid, and sulphates appear to have limited influence on our model.
 
 ```{r fig_2, echo=FALSE, fig.cap="Figure 2. Bar chart showing the target weights of different features of our RandomForestRegressor model.", out.width = '40%'}
 knitr::include_graphics("../results/weights_figure.png")
@@ -80,7 +80,7 @@ In an attempt to further improve the scoring of our model we decided to drop all
 ```{r table_4, echo=FALSE, out.width = '60%'}
 path <- "../results/reduced_tuned_crossval_results.feather"
 kable(read_feather(path),
-      caption="Table 4. Tuned (+ reduced features) RandomForestClassifier Cross-validation training results.")
+      caption="Table 4. Tuned (+ reduced features) RandomForestRegressor Cross-validation training results.")
 ```
 
 In order to best understand how this reduced model compares to our original model we decided to run the reduced feature model on the test set which returned an r2 score of 0.354 and a negative mean absolute error of -0.528 (Table 5). This is a significant decrease compared to the score of the model from before we removed the features (0.492) marking the removal of all feature except alcohol, free sulfur dioxide, and volatile acidity a poor decision for the scoring quality of our model. This also means that the best model we have built for this data is the one that is represented in table 2 and table 3, and that they represent the highest scoring model we have produced for our dataset.
@@ -88,7 +88,7 @@ In order to best understand how this reduced model compares to our original mode
 ```{r table_5, echo=FALSE, out.width = '60%'}
 path <- "../results/reduced_tuned_test_results.feather"
 kable(read_feather(path),
-      caption="Table 5. Tuned (+ reduced features) RandomForestClassifier model test results.")
+      caption="Table 5. Tuned (+ reduced features) RandomForestRegressor model test results.")
 ```
 
 # Limitations & Future
