@@ -13,7 +13,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.compose import ColumnTransformer
 import pandas as pd
 import os
-
+import random
 
 def preprocess_data(data_folder, raw_data_file):
     """Function for preprocessing the white wine quality dataset
@@ -30,6 +30,7 @@ def preprocess_data(data_folder, raw_data_file):
     train_df, test_df = preprocess_data('data', 'raw_data.csv')
 
    """
+    random.seed(2020)
     if not type(data_folder) == str:
         raise ValueError("data_folder argument should be passed as str.")
     if not type(raw_data_file) == str:
