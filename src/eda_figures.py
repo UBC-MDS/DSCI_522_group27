@@ -10,7 +10,7 @@ from docopt import docopt
 import pandas as pd
 import altair as alt
 import os
-
+import random
 
 def make_eda_figures(data_folder, raw_data_file, results_folder):
     """Function for preparing and saving the figures used for the eda analysis of the white wine dataset
@@ -26,6 +26,8 @@ def make_eda_figures(data_folder, raw_data_file, results_folder):
     make_eda_figures('data', 'raw_data.csv', 'results')
 
    """
+    random.seed(2020)
+
     if not type(data_folder) == str:
         raise ValueError("data_folder argument should be passed as str.")
     if not type(raw_data_file) == str:

@@ -19,7 +19,7 @@ df <- read_feather(path)
 
 # **Summary**
 
-In this project we tested multiple machine learning models including dummy regressor, ridge and random forest regressor in order to assess how effectively each was able to build a regression model for predicting the quality scores of white wine based on the results physicochemical tests performed on each beverage. We carried out cross-validation on these three models and found that a random forest regressor achieved the best performance based on the metric of r2 scoring. We further refined the random forest regressor model through random search hyperparameter optimization and observed an r2 test score of 0.492 with a negative mean absolute error of -0.443 (note that we have imbalanced data, complicating this scoring process). We attempted to drop features with low target weights, however, this resulted in a model that performed worse on our data. Moreover, given the observed r2 scores, a random forest regressor may not be an appropriate model to use here. Ways that our model could be further improved would be to investigate the use of other complex models to improve our test scores, scoring on different metrics to guide our model selection and hyperparameter tuning, further hyperparameter tuning with our current model, or the use of more effective feature selection methods. Additionally, we could also experiment with changing the prediction task from a regression problem to a classification problem in order to potentially better match our dataset.
+In this project we tested multiple machine learning models including dummy regressor, ridge and random forest regressor in order to assess how effectively each was able to build a regression model for predicting the quality scores of white wine based on the results physicochemical tests performed on each beverage. We carried out cross-validation on these three models and found that a random forest regressor achieved the best performance based on the metric of r2 scoring. We further refined the random forest regressor model through random search hyperparameter optimization and observed an r2 test score of 0.495 with a negative mean absolute error of -0.441 (note that we have imbalanced data, complicating this scoring process). We attempted to drop features with low target weights, however, this resulted in a model that performed worse on our data. Moreover, given the observed r2 scores, a random forest regressor may not be an appropriate model to use here. Ways that our model could be further improved would be to investigate the use of other complex models to improve our test scores, scoring on different metrics to guide our model selection and hyperparameter tuning, further hyperparameter tuning with our current model, or the use of more effective feature selection methods. Additionally, we could also experiment with changing the prediction task from a regression problem to a classification problem in order to potentially better match our dataset.
 
 # **Introduction**
 
@@ -31,7 +31,7 @@ Here we want to try different regression models to predict the wine quality base
 
 ## **Data**
 
-The dataset used in this project was retrieved from the University of California Irvine (UCI) machine learning repository and was collected by Paulo Cortez, University of Minho, Guimarães, Portugal and A. Cerdeira, F. Almeida, T. Matos with help from J. Reis, Viticulture Commission of the Vinho Verde Region(CVRVV), Porto, Portugal in 2009. This dataset contains the results of various physiochemical test (including scoring for properties such as alcohol content, pH, and residual sugar) which were preformed on white "Vinho Verde" wine samples from Northern Portugal. The data can be found [here](https://archive.ics.uci.edu/ml/datasets/wine+quality), with the [white wine dataset](%5Bhttps://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv) being the specific document used in our analysis. No additional features or specific branding of each wine is available in the dataset for privacy purposes. Each row in the dataset represents a single wine which was tested and scored based on human sensory data.
+The dataset used in this project was retrieved from the University of California Irvine (UCI) machine learning repository and was collected by Paulo Cortez, University of Minho, Guimarães, Portugal and A. Cerdeira, F. Almeida, T. Matos with help from J. Reis, Viticulture Commission of the Vinho Verde Region(CVRVV), Porto, Portugal in 2009. This dataset contains the results of various physiochemical test (including scoring for properties such as alcohol content, pH, and residual sugar) which were preformed on white "Vinho Verde" wine samples from Northern Portugal. The data can be found [here](https://archive.ics.uci.edu/ml/datasets/wine+quality), with the [white wine dataset](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/) being the specific document used in our analysis. No additional features or specific branding of each wine is available in the dataset for privacy purposes. Each row in the dataset represents a single wine which was tested and scored based on human sensory data.
 
 ## **Analysis**
 
@@ -53,7 +53,7 @@ kable(read_feather(path),
       caption="Table 1. Table of cross-validation results for each tested model")
 ```
 
-We found that random forest classifier worked best with our dataset and decided to perform random search hyperparameter optimization (with 28 iterations) to tune the hyperparameters `n_estimators` and `max_depth`, for which we obtained the best values of 2000 and 30, respectively. Running `RandomForestRegressor` with these hyperparameters resulted in a training r2 score of 0.931 and a validation r2 score of 0.504 (Table 2).
+We found that `RandomForestRegressor` worked best with our dataset and decided to perform random search hyperparameter optimization (with 28 iterations) to tune the hyperparameters `n_estimators` and `max_depth`, for which we obtained the best values of 2000 and 30, respectively. Running `RandomForestRegressor` with these hyperparameters resulted in a training r2 score of 0.933 and a validation r2 score of 0.506 (Table 2).
 
 ```{r table_2, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_crossval_results.feather"
@@ -61,7 +61,7 @@ kable(read_feather(path),
       caption="Table 2. Cross-validation training results of the tuned random forest regression model")
 ```
 
-Running our hyperparameter tuned `RandomForestClassifier` model on our test data resulted in an r2 test score of 0.492 and a negative mean absolute error of -0.444 (Table 3). These results are comparable to those that we observed in our validation scoring, which produced similar values (with r2 scoring differing by only about 0.01).
+Running our hyperparameter tuned `RandomForestRegressor` model on our test data resulted in an r2 test score of 0.495 and a negative mean absolute error of -0.441 (Table 3). These results are comparable to those that we observed in our validation scoring, which produced similar values.
 
 ```{r table_3, echo=FALSE, out.width = '60%'}
 path <- "../results/tuned_test_results.feather"
@@ -75,7 +75,7 @@ We then examined the weight of the features present in our best scoring `RandomF
 knitr::include_graphics("../results/weights_figure.png")
 ```
 
-In an attempt to further improve the scoring of our model we decided to drop all features with a target weight lower than 0.10, meaning we decided to run a model that predicted quality scores based on the features alcohol, free sulfur dioxide, and volatile acidity. Thus we ran the model again with only these features and observed an improved training r2 score of 0.713 but a decreased validation r2 score of 0.377 (Table 4). This marks a decrease in both training and validation scores compared to our version of the model which did not have these features removed.
+In an attempt to further improve the scoring of our model we decided to drop all features with a target weight lower than 0.10, meaning we decided to run a model that predicted quality scores based on the features alcohol, free sulfur dioxide, and volatile acidity. Thus we ran the model again with only these features and observed an improved training r2 score of 0.821 but a decreased validation r2 score of 0.381 (Table 4). This marks a decrease in both training and validation scores compared to our version of the model which did not have these features removed.
 
 ```{r table_4, echo=FALSE, out.width = '60%'}
 path <- "../results/reduced_tuned_crossval_results.feather"
@@ -83,7 +83,7 @@ kable(read_feather(path),
       caption="Table 4. Tuned (+ reduced features) RandomForestRegressor Cross-validation training results.")
 ```
 
-In order to best understand how this reduced model compares to our original model we decided to run the reduced feature model on the test set which returned an r2 score of 0.354 and a negative mean absolute error of -0.528 (Table 5). This is a significant decrease compared to the score of the model from before we removed the features (0.492) marking the removal of all feature except alcohol, free sulfur dioxide, and volatile acidity a poor decision for the scoring quality of our model. This also means that the best model we have built for this data is the one that is represented in table 2 and table 3, and that they represent the highest scoring model we have produced for our dataset.
+In order to best understand how this reduced model compares to our original model we decided to run the reduced feature model on the test set which returned an r2 score of 0.353 and a negative mean absolute error of -0.516 (Table 5). This is a significant decrease compared to the score of the model from before we removed the features (0.495) marking the removal of all feature except alcohol, free sulfur dioxide, and volatile acidity a poor decision for the scoring quality of our model. This also means that the best model we have built for this data is the one that is represented in table 2 and table 3, and that they represent the highest scoring model we have produced for our dataset.
 
 ```{r table_5, echo=FALSE, out.width = '60%'}
 path <- "../results/reduced_tuned_test_results.feather"
